@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="机器学习,瓜皮笔记,">
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="第六章 支持向量机6.1 支持向量机的基本型Tips 1：点到超平面的距离公式给定超平面 $W^{\top}x+b=0$ 后，计算某一点 $A=x_{i}$ 到该平面的距离推导：  设距离为$r$ , 则可以通过下面的等式解出$r$ :$$W^\top(x_i-r\frac{W}{|W|})+b=0 \tag{6.1}\label{pluginpoint}$$这是因为$A$在超平面上的投影点$B$">
+<meta name="keywords" content="机器学习,瓜皮笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第一篇博客">
+<meta property="og:url" content="http://yoursite.com/2019/05/01/第一篇博客/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第六章 支持向量机6.1 支持向量机的基本型Tips 1：点到超平面的距离公式给定超平面 $W^{\top}x+b=0$ 后，计算某一点 $A=x_{i}$ 到该平面的距离推导：  设距离为$r$ , 则可以通过下面的等式解出$r$ :$$W^\top(x_i-r\frac{W}{|W|})+b=0 \tag{6.1}\label{pluginpoint}$$这是因为$A$在超平面上的投影点$B$">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-05-01T07:19:00.162Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="第一篇博客">
+<meta name="twitter:description" content="第六章 支持向量机6.1 支持向量机的基本型Tips 1：点到超平面的距离公式给定超平面 $W^{\top}x+b=0$ 后，计算某一点 $A=x_{i}$ 到该平面的距离推导：  设距离为$r$ , 则可以通过下面的等式解出$r$ :$$W^\top(x_i-r\frac{W}{|W|})+b=0 \tag{6.1}\label{pluginpoint}$$这是因为$A$在超平面上的投影点$B$">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/01/第一篇博客/">
 
 
 
 
 
-  <title>Hexo</title>
+  <title>第一篇博客 | Hexo</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -234,9 +238,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -266,9 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/05/01/第一篇博客/" itemprop="url">第一篇博客</a></h1>
+          <h1 class="post-title" itemprop="name headline">第一篇博客</h1>
         
 
         <div class="post-meta">
@@ -318,9 +320,7 @@
       
 
       
-        
-          
-            <h1 id="第六章-支持向量机"><a href="#第六章-支持向量机" class="headerlink" title="第六章 支持向量机"></a>第六章 支持向量机</h1><h2 id="6-1-支持向量机的基本型"><a href="#6-1-支持向量机的基本型" class="headerlink" title="6.1 支持向量机的基本型"></a>6.1 支持向量机的基本型</h2><h3 id="Tips-1：点到超平面的距离公式"><a href="#Tips-1：点到超平面的距离公式" class="headerlink" title="Tips 1：点到超平面的距离公式"></a>Tips 1：点到超平面的距离公式</h3><p>给定超平面 $W^{\top}x+b=0$ 后，计算某一点 $A=x_{i}$ 到该平面的距离推导：</p>
+        <h1 id="第六章-支持向量机"><a href="#第六章-支持向量机" class="headerlink" title="第六章 支持向量机"></a>第六章 支持向量机</h1><h2 id="6-1-支持向量机的基本型"><a href="#6-1-支持向量机的基本型" class="headerlink" title="6.1 支持向量机的基本型"></a>6.1 支持向量机的基本型</h2><h3 id="Tips-1：点到超平面的距离公式"><a href="#Tips-1：点到超平面的距离公式" class="headerlink" title="Tips 1：点到超平面的距离公式"></a>Tips 1：点到超平面的距离公式</h3><p>给定超平面 $W^{\top}x+b=0$ 后，计算某一点 $A=x_{i}$ 到该平面的距离推导：</p>
 <p> 设距离为$r$ , 则可以通过下面的等式解出$r$ :<br>$$<br>W^\top(x_i-r<em>\frac{W}{|W|})+b=0 \tag{6.1}\label{pluginpoint}<br>$$<br>这是因为$A$在超平面上的投影点$B$可以表示为：<br>$$<br>x_i - r</em>\frac{W}{|W|} \tag{6.2}\label{projection}<br>$$<br>这里的几何意义很明显。不再赘述。</p>
 <p>所以整理方程$\eqref{pluginpoint}$可以得到：<br>$$<br>r=\frac{|W^\top x_i+b|}{|W|} \tag{6.3}\label{distance}<br>$$</p>
 <h3 id="Tips-2：间隔的概念"><a href="#Tips-2：间隔的概念" class="headerlink" title="Tips 2：间隔的概念"></a>Tips 2：间隔的概念</h3><p>假设所有点都已经能被超平面$l:W^\top x + b = 0$分类正确，那么对所有点$x_i$都有对应的$\epsilon_i&gt;0$，使得下式成立：<br>$$<br>\left{<br>\begin{aligned}<br>W^\top x_i + b \ge +\epsilon_i, y_i = +1\<br>W^\top x_i + b \le -\epsilon_i, y_i = -1<br>\end{aligned}<br>\right.<br>$$<br>通过在上述不等式中，首先对$W$和$b$施加适当的旋转变换，而后同时除以 $\min\limits_{i}\epsilon_i$ 就总能使得下式成立：<br>$$<br>\left{<br>\begin{aligned}<br>W^\top x_i + b \ge +1, y_i=+1\<br>W^\top x_i + b \le -1, y_i=-1<br>\end{aligned}<br>\right. \tag{6.4}\label{normlize}<br>$$<br>下面着重考察那些使得上述不等式取得等号的数据点，假设$x_{i_{n}}^+$在超平面$l^+:W^\top x + b = +1$上；$x_{i_{m}}^-$在超平面$l^-:W^\top x + b = -1$上。那么显然这两个点是所有数据点中里分离超平面$W^\top x + b = 0$最近的两个点。那么我们就可以定义“间隔”这样一个概念：$l^+$与$l^-$之间的距离称为“间隔”（margin），这里我们记作$\gamma$。显然$l^+$与$l^-$之间的距离为$l^+$到$l$的距离加上$l$到$l^-$的距离（也就是$x_{i_{n}}^+$到$l$的距离加上$x_{i_{m}}^-$到$l$的距离）。</p>
@@ -338,8 +338,6 @@
 <p>其次，下面对原问题的KKT条件展开讨论：</p>
 <p>在我们求解原问题$\eqref{primal}$时，会通过拉格朗日乘子法构造出拉格朗日函数$L(\alpha_i, W, b)$，并且解下面的优化问题（在凸函数的背景下–$\frac{1}{2}|W|^2$显然是凸函数–这个优化问题的解和原问题同解）：<br>$$<br>\begin{aligned}<br>\min\limits_{\alpha_i,W,b}&amp;\ \ L(\alpha_i,W,b)=\frac{1}{2}|W|^2+\sum_{i=1}^{m}\alpha_i\left[1-y_i(W^\top x_i+b)\right]\<br>s.t.&amp;\ \ \alpha_i\geq0,\ i=1,2,\cdots,m<br>\end{aligned}\tag{6.14}\label{largerangianpro}<br>$$<br>这个问题和对偶问题长的很像，但确实不是对偶问题23333。此时根据KKT条件的定义，我们就可以对上面的优化问题$\eqref{largerangianpro}$列出它的KKT条件（最优解必须满足的条件），同时因为同解的缘故，原问题的解也必然满足：<br>$$<br>\left{<br>\begin{aligned}<br>\frac{\partial L(\alpha_i,W,b)}{\partial W}=W-\sum_{i=1}^{m}\alpha_iy_ix_i&amp;=0\<br>\frac{\partial L(\alpha_i,W,b)}{\partial b}=\sum_{i=1}^{m}\alpha_iy_i&amp;=0\<br>\alpha_i\left[1-y_i(W^\top x_i+b)\right]&amp;=0\<br>y_i(W^\top x_i+b)&amp;\geq1\<br>\alpha_i&amp;\geq0\<br>\end{aligned}<br>\right.<br>$$<br>通过观察可以发现上述第一条和第二条等式就是对偶问题构造过程中要求满足的条件$\eqref{min}$；第3条与第4条为什么满足还没观察出来。</p>
 
-          
-        
       
     </div>
     
@@ -354,14 +352,22 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+            <a href="/tags/瓜皮笔记/" rel="tag"># 瓜皮笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -371,10 +377,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -382,6 +389,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -402,8 +413,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -454,6 +474,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第六章-支持向量机"><span class="nav-number">1.</span> <span class="nav-text">第六章 支持向量机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-支持向量机的基本型"><span class="nav-number">1.1.</span> <span class="nav-text">6.1 支持向量机的基本型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips-1：点到超平面的距离公式"><span class="nav-number">1.1.1.</span> <span class="nav-text">Tips 1：点到超平面的距离公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips-2：间隔的概念"><span class="nav-number">1.1.2.</span> <span class="nav-text">Tips 2：间隔的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips-3-支持向量机基本型的导出"><span class="nav-number">1.1.3.</span> <span class="nav-text">Tips 3: 支持向量机基本型的导出</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-支持向量机原问题的对偶问题"><span class="nav-number">1.2.</span> <span class="nav-text">6.2 支持向量机原问题的对偶问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips-1-为什么研究对偶问题和-KKT-条件"><span class="nav-number">1.2.1.</span> <span class="nav-text">Tips 1: 为什么研究对偶问题和 KKT 条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips-2-如何导出对偶问题"><span class="nav-number">1.2.2.</span> <span class="nav-text">Tips 2: 如何导出对偶问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tips-3-KKT条件的作用"><span class="nav-number">1.2.3.</span> <span class="nav-text">Tips 3: KKT条件的作用</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -587,6 +623,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
