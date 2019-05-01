@@ -321,22 +321,90 @@
         
           
             <h1 id="第六章-支持向量机"><a href="#第六章-支持向量机" class="headerlink" title="第六章 支持向量机"></a>第六章 支持向量机</h1><h2 id="6-1-支持向量机的基本型"><a href="#6-1-支持向量机的基本型" class="headerlink" title="6.1 支持向量机的基本型"></a>6.1 支持向量机的基本型</h2><h3 id="Tips-1：点到超平面的距离公式"><a href="#Tips-1：点到超平面的距离公式" class="headerlink" title="Tips 1：点到超平面的距离公式"></a>Tips 1：点到超平面的距离公式</h3><p>给定超平面 $W^{\top}x+b=0$ 后，计算某一点 $A=x_{i}$ 到该平面的距离推导：</p>
-<p> 设距离为$r$ , 则可以通过下面的等式解出$r$ :<br>$$<br>W^\top(x_i-r<em>\frac{W}{|W|})+b=0 \tag{6.1}\label{pluginpoint}<br>$$<br>这是因为$A$在超平面上的投影点$B$可以表示为：<br>$$<br>x_i - r</em>\frac{W}{|W|} \tag{6.2}\label{projection}<br>$$<br>这里的几何意义很明显。不再赘述。</p>
-<p>所以整理方程$\eqref{pluginpoint}$可以得到：<br>$$<br>r=\frac{|W^\top x_i+b|}{|W|} \tag{6.3}\label{distance}<br>$$</p>
-<h3 id="Tips-2：间隔的概念"><a href="#Tips-2：间隔的概念" class="headerlink" title="Tips 2：间隔的概念"></a>Tips 2：间隔的概念</h3><p>假设所有点都已经能被超平面$l:W^\top x + b = 0$分类正确，那么对所有点$x_i$都有对应的$\epsilon_i&gt;0$，使得下式成立：<br>$$<br>\left{<br>\begin{aligned}<br>W^\top x_i + b \ge +\epsilon_i, y_i = +1\<br>W^\top x_i + b \le -\epsilon_i, y_i = -1<br>\end{aligned}<br>\right.<br>$$<br>通过在上述不等式中，首先对$W$和$b$施加适当的旋转变换，而后同时除以 $\min\limits_{i}\epsilon_i$ 就总能使得下式成立：<br>$$<br>\left{<br>\begin{aligned}<br>W^\top x_i + b \ge +1, y_i=+1\<br>W^\top x_i + b \le -1, y_i=-1<br>\end{aligned}<br>\right. \tag{6.4}\label{normlize}<br>$$<br>下面着重考察那些使得上述不等式取得等号的数据点，假设$x_{i_{n}}^+$在超平面$l^+:W^\top x + b = +1$上；$x_{i_{m}}^-$在超平面$l^-:W^\top x + b = -1$上。那么显然这两个点是所有数据点中里分离超平面$W^\top x + b = 0$最近的两个点。那么我们就可以定义“间隔”这样一个概念：$l^+$与$l^-$之间的距离称为“间隔”（margin），这里我们记作$\gamma$。显然$l^+$与$l^-$之间的距离为$l^+$到$l$的距离加上$l$到$l^-$的距离（也就是$x_{i_{n}}^+$到$l$的距离加上$x_{i_{m}}^-$到$l$的距离）。</p>
-<p>根据距离公式$\eqref{distance}$，$x_{i_{n}}^+$到$l$的距离为：<br>$$<br>r^+ = \frac{|W^\top x_{i_{n}}^++b|}{|W|}=\frac{|+1|}{|W|} \tag{6.5}\label{r+}<br>$$<br>上式第二个等号是因为$x_{i_{n}}^+$落在了$l^+$上，所以可以将$|W^\top x_{i_{n}}^++b|=1$代入上式。</p>
-<p>同理我们有<br>$$<br>r^- = \frac{|W^\top x_{i_{m}}^-+b|}{|W|}=\frac{|-1|}{|W|} \tag{6.6}\label{r-}<br>$$<br>所以间隔$\gamma=\frac{2}{|W|}$。</p>
-<h3 id="Tips-3-支持向量机基本型的导出"><a href="#Tips-3-支持向量机基本型的导出" class="headerlink" title="Tips 3: 支持向量机基本型的导出"></a>Tips 3: 支持向量机基本型的导出</h3><p>支持向量机建模的想法在于要最大化找到的那个超平面所对应的“间隔”。显然，这样找到的超平面在小样本下会有更加鲁棒的表现。那么原始的优化问题就会写成下面的形式：<br>$$<br>\begin{aligned}<br>\max\limits_{W,b}&amp;\ \ \frac{2}{|W|}\<br>s.t.&amp;\ \ y_{i}(W^\top x_i + b)\ge1, i=1,\cdots,m<br>\end{aligned} \tag{6.7}\label{originaloptimization}<br>$$<br>考虑到上面的优化问题并不是凸函数，不能方便的求解，考虑将最大化$\frac{2}{|W|}$改为最小化$\frac{1}{2}|W|^2$。这两个优化问题在数学上等价，也就是同解。所以我们导出了支持向量机的基本型，也称之为原问题：<br>$$<br>\begin{aligned}<br>\min\limits_{W,b}&amp;\ \ \frac{1}{2}|W|^2\<br>s.t.&amp;\ \ y_{i}(W^\top x_i + b)\ge1, i=1,\cdots,m<br>\end{aligned} \tag{6.8}\label{primal}<br>$$<br>其实在这里已经可以通过代码包来解这个优化问题了！只是解起来，效率会低一些。</p>
+<p> 设距离为$r$ , 则可以通过下面的等式解出$r$ :</p>
+<script type="math/tex; mode=display">
+W^\top(x_i-r*\frac{W}{\|W\|})+b=0 \tag{6.1}\label{pluginpoint}</script><p>这是因为$A$在超平面上的投影点$B$可以表示为：</p>
+<script type="math/tex; mode=display">
+x_i - r*\frac{W}{\|W\|} \tag{6.2}\label{projection}</script><p>这里的几何意义很明显。不再赘述。</p>
+<p>所以整理方程$\eqref{pluginpoint}$可以得到：</p>
+<script type="math/tex; mode=display">
+r=\frac{|W^\top x_i+b|}{\|W\|} \tag{6.3}\label{distance}</script><h3 id="Tips-2：间隔的概念"><a href="#Tips-2：间隔的概念" class="headerlink" title="Tips 2：间隔的概念"></a>Tips 2：间隔的概念</h3><p>假设所有点都已经能被超平面$l:W^\top x + b = 0$分类正确，那么对所有点$x_i$都有对应的$\epsilon_i&gt;0$，使得下式成立：</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+W^\top x_i + b \ge +\epsilon_i, y_i = +1\\
+W^\top x_i + b \le -\epsilon_i, y_i = -1
+\end{aligned}
+\right.</script><p>通过在上述不等式中，首先对$W$和$b$施加适当的旋转变换，而后同时除以 $\min\limits_{i}\epsilon_i$ 就总能使得下式成立：</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+W^\top x_i + b \ge +1, y_i=+1\\
+W^\top x_i + b \le -1, y_i=-1
+\end{aligned}
+\right. \tag{6.4}\label{normlize}</script><p>下面着重考察那些使得上述不等式取得等号的数据点，假设$x<em>{i</em>{n}}^+$在超平面$l^+:W^\top x + b = +1$上；$x<em>{i</em>{m}}^-$在超平面$l^-:W^\top x + b = -1$上。那么显然这两个点是所有数据点中里分离超平面$W^\top x + b = 0$最近的两个点。那么我们就可以定义“间隔”这样一个概念：$l^+$与$l^-$之间的距离称为“间隔”（margin），这里我们记作$\gamma$。显然$l^+$与$l^-$之间的距离为$l^+$到$l$的距离加上$l$到$l^-$的距离（也就是$x<em>{i</em>{n}}^+$到$l$的距离加上$x<em>{i</em>{m}}^-$到$l$的距离）。</p>
+<p>根据距离公式$\eqref{distance}$，$x<em>{i</em>{n}}^+$到$l$的距离为：</p>
+<script type="math/tex; mode=display">
+r^+ = \frac{|W^\top x_{i_{n}}^++b|}{\|W\|}=\frac{|+1|}{\|W\|} \tag{6.5}\label{r+}</script><p>上式第二个等号是因为$x<em>{i</em>{n}}^+$落在了$l^+$上，所以可以将$|W^\top x<em>{i</em>{n}}^++b|=1$代入上式。</p>
+<p>同理我们有</p>
+<script type="math/tex; mode=display">
+r^- = \frac{|W^\top x_{i_{m}}^-+b|}{\|W\|}=\frac{|-1|}{\|W\|} \tag{6.6}\label{r-}</script><p>所以间隔$\gamma=\frac{2}{|W|}$。</p>
+<h3 id="Tips-3-支持向量机基本型的导出"><a href="#Tips-3-支持向量机基本型的导出" class="headerlink" title="Tips 3: 支持向量机基本型的导出"></a>Tips 3: 支持向量机基本型的导出</h3><p>支持向量机建模的想法在于要最大化找到的那个超平面所对应的“间隔”。显然，这样找到的超平面在小样本下会有更加鲁棒的表现。那么原始的优化问题就会写成下面的形式：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\max\limits_{W,b}&\ \ \frac{2}{\|W\|}\\
+s.t.&\ \ y_{i}(W^\top x_i + b)\ge1, i=1,\cdots,m
+\end{aligned} \tag{6.7}\label{originaloptimization}</script><p>考虑到上面的优化问题并不是凸函数，不能方便的求解，考虑将最大化$\frac{2}{|W|}$改为最小化$\frac{1}{2}|W|^2$。这两个优化问题在数学上等价，也就是同解。所以我们导出了支持向量机的基本型，也称之为原问题：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\min\limits_{W,b}&\ \ \frac{1}{2}\|W\|^2\\
+s.t.&\ \ y_{i}(W^\top x_i + b)\ge1, i=1,\cdots,m
+\end{aligned} \tag{6.8}\label{primal}</script><p>其实在这里已经可以通过代码包来解这个优化问题了！只是解起来，效率会低一些。</p>
 <h2 id="6-2-支持向量机原问题的对偶问题"><a href="#6-2-支持向量机原问题的对偶问题" class="headerlink" title="6.2 支持向量机原问题的对偶问题"></a>6.2 支持向量机原问题的对偶问题</h2><h3 id="Tips-1-为什么研究对偶问题和-KKT-条件"><a href="#Tips-1-为什么研究对偶问题和-KKT-条件" class="headerlink" title="Tips 1: 为什么研究对偶问题和 KKT 条件"></a>Tips 1: 为什么研究对偶问题和 KKT 条件</h3><p>对于初次接触优化问题的同学而言，对偶问题一般显得莫名奇妙。最直接的问题是，我们为什么要研究对偶问题？进一步地，有的人可能还知道我们还要搞一个KKT条件，研究那个又干嘛？</p>
 <p>这几个问题在支持向量机的背景下还是很好回答的，逻辑是这样的：在支持向量机的案例下，对偶问题的解还是原问题的解，并且对偶问题比原问题$\eqref{primal}$要好解决；为什么对偶问题的解会是原问题的解呢？因为对偶问题的解满足原问题的KKT条件；为什么对偶问题好解决呢？因为在研究对偶问题过程中可以通过原问题的KKT条件去除掉大多数的数据点，找到对最优解起作用的那几个数据点，并只利用它们进行计算，从而降低了问题的难度。这个逻辑大家先接收下，下面我一步一步的show出来。</p>
 <p>首先来一大串定义，大家背住就好！</p>
 <p>高数中学过带等式约束的优化问题，可以利用拉格朗日数乘法消去等式约束。同样的，不等式约束也可以利用类似的技巧消去。在消去的过程中，我们会得到拉格朗日函数。这个拉格朗日函数是我们构造对偶问题的基础！大家第一步起手式要练扎实，都是靠背的功夫！</p>
-<h3 id="Tips-2-如何导出对偶问题"><a href="#Tips-2-如何导出对偶问题" class="headerlink" title="Tips 2: 如何导出对偶问题"></a>Tips 2: 如何导出对偶问题</h3><p>首先针对原问题$\eqref{primal}$，我们定义它的拉格朗日函数：<br>$$<br>L(\alpha_i,W,b)=\frac{1}{2}|W|^2+\sum_{i=1}^{m}\alpha_i\left[1-y_i(W^\top x_i+b)\right] \tag{6.9}\label{largerange}<br>$$<br>其中要求$\alpha_i\ge0$。</p>
-<p>接着对固定的$\alpha_i$，通过对$W,b$求拉格朗日函数的最小值，我们定义对偶函数：<br>$$<br>g(\alpha_i)=\min_{W,b}\ L(\alpha_i,W,b)\tag{6.10}<br>$$<br>上述求最小值的过程要求我们对$W,b$同时求偏导：<br>$$<br>\begin{aligned}<br>W-\sum_{i=1}^{m}\alpha_iy_ix_i&amp;=0\<br>\sum_{i=1}^{m}\alpha_iy_i&amp;=0<br>\end{aligned}\tag{6.11}\label{min}<br>$$<br>解得$W=\sum_{i=1}^{m}\alpha_iy_ix_i$。将这些结果带回到$\eqref{largerange}$ 可以得到详细的对偶函数：<br>$$<br>\begin{aligned}<br>g(\alpha_i)&amp;=\sum_{i=1}^{m}\alpha_{i}-\frac{1}{2}\sum_{j=1}^{m}\alpha_jy_j\left(\sum_{i}^{m}\alpha_iy_{i}x_i^\top\right)x_j\<br>&amp;=\sum_{i=1}^{m}\alpha_{i}-\frac{1}{2}\sum_{j=1}^{m}\sum_{i=1}^{m}\alpha_jy_j\alpha_iy_{i}x_i^\top x_j<br>\end{aligned}\tag{6.12}\label{dualfun}<br>$$<br>对偶问题就是最大化对偶函数：<br>$$<br>\begin{aligned}<br>\max_{\alpha_i}&amp;\ \ g(\alpha_i)=\sum_{i=1}^{m}\alpha_{i}-\frac{1}{2}\sum_{j=1}^{m}\sum_{i}^{m}\alpha_jy_j\alpha_iy_{i}x_i^\top x_j\<br>s.t.&amp;\ \ \sum_{i=1}^{m}\alpha_iy_i=0\<br>&amp;\ \ \alpha_i\geq0, i=1,2,\cdots,m<br>\end{aligned}\tag{6.13}\label{dualpro}<br>$$<br>上面的对偶问题解出$\alpha_{i}$后再带回到$\eqref{min}$，就可以得到$W,b$。这里有一个问题，为什么这样得到的$W,b$就是原问题的最优解？下面的KKT条件会Show出这一点！</p>
+<h3 id="Tips-2-如何导出对偶问题"><a href="#Tips-2-如何导出对偶问题" class="headerlink" title="Tips 2: 如何导出对偶问题"></a>Tips 2: 如何导出对偶问题</h3><p>首先针对原问题$\eqref{primal}$，我们定义它的拉格朗日函数：</p>
+<script type="math/tex; mode=display">
+L(\alpha_i,W,b)=\frac{1}{2}\|W\|^2+\sum_{i=1}^{m}\alpha_i\left[1-y_i(W^\top x_i+b)\right] \tag{6.9}\label{largerange}</script><p>其中要求$\alpha_i\ge0$。</p>
+<p>接着对固定的$\alpha_i$，通过对$W,b$求拉格朗日函数的最小值，我们定义对偶函数：</p>
+<script type="math/tex; mode=display">
+g(\alpha_i)=\min_{W,b}\ L(\alpha_i,W,b)\tag{6.10}</script><p>上述求最小值的过程要求我们对$W,b$同时求偏导：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+W-\sum_{i=1}^{m}\alpha_iy_ix_i&=0\\
+\sum_{i=1}^{m}\alpha_iy_i&=0
+\end{aligned}\tag{6.11}\label{min}</script><p>解得$W=\sum_{i=1}^{m}\alpha_iy_ix_i$。将这些结果带回到$\eqref{largerange}$ 可以得到详细的对偶函数：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+g(\alpha_i)&=\sum_{i=1}^{m}\alpha_{i}-\frac{1}{2}\sum_{j=1}^{m}\alpha_jy_j\left(\sum_{i}^{m}\alpha_iy_{i}x_i^\top\right)x_j\\
+&=\sum_{i=1}^{m}\alpha_{i}-\frac{1}{2}\sum_{j=1}^{m}\sum_{i=1}^{m}\alpha_jy_j\alpha_iy_{i}x_i^\top x_j
+\end{aligned}\tag{6.12}\label{dualfun}</script><p>对偶问题就是最大化对偶函数：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\max_{\alpha_i}&\ \ g(\alpha_i)=\sum_{i=1}^{m}\alpha_{i}-\frac{1}{2}\sum_{j=1}^{m}\sum_{i}^{m}\alpha_jy_j\alpha_iy_{i}x_i^\top x_j\\
+s.t.&\ \ \sum_{i=1}^{m}\alpha_iy_i=0\\
+&\ \ \alpha_i\geq0, i=1,2,\cdots,m
+\end{aligned}\tag{6.13}\label{dualpro}</script><p>上面的对偶问题解出$\alpha_{i}$后再带回到$\eqref{min}$，就可以得到$W,b$。这里有一个问题，为什么这样得到的$W,b$就是原问题的最优解？下面的KKT条件会Show出这一点！</p>
 <h3 id="Tips-3-KKT条件的作用"><a href="#Tips-3-KKT条件的作用" class="headerlink" title="Tips 3: KKT条件的作用"></a>Tips 3: KKT条件的作用</h3><p>下面来show一下KKT条件到底有什么用。</p>
 <p>首先明确一点，上述对偶问题和KKT条件没有必然联系。我们不涉及对偶问题也可以讨论原问题的KKT条件。这一个Tips就是要show一下原问题的KKT条件是如何帮助回答上面两个问题的：为什么支持向量机中对偶问题与原问题同解；为什么对偶问题更容易解决。</p>
 <p>其次，下面对原问题的KKT条件展开讨论：</p>
-<p>在我们求解原问题$\eqref{primal}$时，会通过拉格朗日乘子法构造出拉格朗日函数$L(\alpha_i, W, b)$，并且解下面的优化问题（在凸函数的背景下–$\frac{1}{2}|W|^2$显然是凸函数–这个优化问题的解和原问题同解）：<br>$$<br>\begin{aligned}<br>\min\limits_{\alpha_i,W,b}&amp;\ \ L(\alpha_i,W,b)=\frac{1}{2}|W|^2+\sum_{i=1}^{m}\alpha_i\left[1-y_i(W^\top x_i+b)\right]\<br>s.t.&amp;\ \ \alpha_i\geq0,\ i=1,2,\cdots,m<br>\end{aligned}\tag{6.14}\label{largerangianpro}<br>$$<br>这个问题和对偶问题长的很像，但确实不是对偶问题23333。此时根据KKT条件的定义，我们就可以对上面的优化问题$\eqref{largerangianpro}$列出它的KKT条件（最优解必须满足的条件），同时因为同解的缘故，原问题的解也必然满足：<br>$$<br>\left{<br>\begin{aligned}<br>\frac{\partial L(\alpha_i,W,b)}{\partial W}=W-\sum_{i=1}^{m}\alpha_iy_ix_i&amp;=0\<br>\frac{\partial L(\alpha_i,W,b)}{\partial b}=\sum_{i=1}^{m}\alpha_iy_i&amp;=0\<br>\alpha_i\left[1-y_i(W^\top x_i+b)\right]&amp;=0\<br>y_i(W^\top x_i+b)&amp;\geq1\<br>\alpha_i&amp;\geq0\<br>\end{aligned}<br>\right.<br>$$<br>通过观察可以发现上述第一条和第二条等式就是对偶问题构造过程中要求满足的条件$\eqref{min}$；第3条与第4条为什么满足还没观察出来。</p>
+<p>在我们求解原问题$\eqref{primal}$时，会通过拉格朗日乘子法构造出拉格朗日函数$L(\alpha_i, W, b)$，并且解下面的优化问题（在凸函数的背景下—$\frac{1}{2}|W|^2$显然是凸函数—这个优化问题的解和原问题同解）：</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\min\limits_{\alpha_i,W,b}&\ \ L(\alpha_i,W,b)=\frac{1}{2}\|W\|^2+\sum_{i=1}^{m}\alpha_i\left[1-y_i(W^\top x_i+b)\right]\\
+s.t.&\ \ \alpha_i\geq0,\ i=1,2,\cdots,m
+\end{aligned}\tag{6.14}\label{largerangianpro}</script><p>这个问题和对偶问题长的很像，但确实不是对偶问题23333。此时根据KKT条件的定义，我们就可以对上面的优化问题$\eqref{largerangianpro}$列出它的KKT条件（最优解必须满足的条件），同时因为同解的缘故，原问题的解也必然满足：</p>
+<script type="math/tex; mode=display">
+\left\{
+\begin{aligned}
+\frac{\partial L(\alpha_i,W,b)}{\partial W}=W-\sum_{i=1}^{m}\alpha_iy_ix_i&=0\\
+\frac{\partial L(\alpha_i,W,b)}{\partial b}=\sum_{i=1}^{m}\alpha_iy_i&=0\\
+\alpha_i\left[1-y_i(W^\top x_i+b)\right]&=0\\
+y_i(W^\top x_i+b)&\geq1\\
+\alpha_i&\geq0\\
+\end{aligned}
+\right.</script><p>通过观察可以发现上述第一条和第二条等式就是对偶问题构造过程中要求满足的条件$\eqref{min}$；第3条与第4条为什么满足还没观察出来。</p>
 
           
         
