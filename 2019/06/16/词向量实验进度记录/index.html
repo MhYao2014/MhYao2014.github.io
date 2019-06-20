@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-20T07:27:09.828Z">
+<meta property="og:updated_time" content="2019-06-20T17:49:11.885Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量实验进度记录">
 <meta name="twitter:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
@@ -325,6 +325,11 @@
 <p>今天先不搞了。</p>
 <p>果然，不搞科研，屁事没有。不谈恋爱，逼事没有。。。</p>
 <p>拉个人一起搞还是有用啊，唐同学把ontonotes release 5.0搞定了。我直接捡现成的就好了。但是如果没有我一个学期的思想工作，他会入坑么？呵呵，王老师那边的学生根本忽悠不动。</p>
+<h2 id="List-of-坑"><a href="#List-of-坑" class="headerlink" title="List of 坑"></a>List of 坑</h2><ul>
+<li>围绕使用ontonotes release 5.0有数不清的坑，第一个算是下载到这个数据集，劳资从第一次遇见到解决这个问题用了1年，期间请教过水平比我高好多的人比如睿蠡（贼聪明）、占秋（奇技淫巧懂得贼多）和健宇（计算机专业出生的，很专业），都在尝试了一个下午之后就表示放弃了，搞不明白；更别谈网上也只见有人说自己用了，但是从来没有人说自己怎么拿到数据的，很奇怪（尤其是在大家都知道这个数据集不要钱，事出反常必有妖，不知道啥时候才能想明白这个问题）。最后还是得靠自己才能解决。</li>
+<li>使用这个数据集的第一大步是从标注数据集中（以一种很抽象的方式标注的）将有用信息以表的形式载入到数据库里面。这第一大步的第一小步是按照规定建立55张表格，现在勉强建立了51张，算是跨过去了这个坎。这一步因为我自己对数据库、SQL等等一无所知，加上数据集使用教程更新停滞（2011年左右停止更新，现在依然有很多人用，想不通好像是那个负责这个项目的大学宣布不搞这个项目了），加上Mysql发布版本的傻逼之处（不给下载旧版本，新版本又改了语法），加上python2.7停止维护（导致里面使用的sql语法也是错误的，同时还存在建表过程中逻辑上的错误，比如它先建了子表，再建父表（妈的，这样不报错才有鬼，不懂为什么当年没有人指责这一点：你放出来的代码是错的还不改。事出反常必有妖，又是一个不知道啥时候才能明白的背后故事））等等傻逼因素（别人没遇见过这些因素么？想不明白，为什么网上搜不到相关提问和解答，至少斯坦福和一众公司都在用这个东西啊？？？？一些NLP比赛也会用到的，是我太菜了么？）导致我举步维艰。</li>
+<li>下一个坑是要深入搞明白SQL在填写表格时，外键对填写操作时是怎么约束的，因为现在表格建立好了，要把语料填到表格里又是开始填了一半开始报莫名其妙的错误，大概意思是违反了外键约束。头痛。</li>
+</ul>
 
       
     </div>
@@ -413,8 +418,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -481,6 +495,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#List-of-坑"><span class="nav-number">1.</span> <span class="nav-text">List of 坑</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

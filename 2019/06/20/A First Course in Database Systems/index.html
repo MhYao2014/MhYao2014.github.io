@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="CS基础之SQL学习Flag。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-20T13:47:56.748Z">
+<meta property="og:updated_time" content="2019-06-20T17:29:25.021Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A First Course in Database Systems">
 <meta name="twitter:description" content="CS基础之SQL学习Flag。">
@@ -322,8 +322,20 @@
       
         <p>CS基础之SQL学习Flag。</p>
 <a id="more"></a>
-<p>在我这种野路子出生的状况下，第一年熟悉了一点点一点点的Computer Skill的情况下，还是乘早再学习一些Computer Science Skill吧。。。不然会死的很难看的（男人的直觉）。</p>
+<h2 id="劳资为什么要学SQL"><a href="#劳资为什么要学SQL" class="headerlink" title="劳资为什么要学SQL"></a>劳资为什么要学SQL</h2><p>有用呗！</p>
+<p>在我这种野路子出生的状况下，第一年熟悉了一点点一点点的Computer Skill的情况下，还是趁早再学习一些Computer Science Skill吧。。。不然会死的很难看的（男人的直觉）。</p>
 <p>最近两天被这个SQL折磨的不轻。早点会早点完事，就像一开始觉得学点python足够搞research了，最后兜兜转转一年过去发现还是得会C++（不然搞不出有用的东西）；现在觉得学点SQL基本的查询语言就够了，谁知道会不会几年以后发现还是这种情况。</p>
+<p>磨刀不误砍柴功。</p>
+<h2 id="零零碎碎的经验"><a href="#零零碎碎的经验" class="headerlink" title="零零碎碎的经验"></a>零零碎碎的经验</h2><p>经过连续3天的踩坑，总结了4条不太成系统的经验（这4条坑了劳资3天），分别列举在这里：</p>
+<p>SQL建表添加外键失败通常有以下4个原因：</p>
+<ul>
+<li>你语法写错了（通常是mysql安装的版本问题，比如python2.7自带的sitepackage里面写的sql外键语法就不适用于mysql5.7以后的版本了，再次吐槽，这种很底层的语言，竟然也胡乱改来改去，稳定第一不懂么）。</li>
+<li><p>父表被链接属性不存在。</p>
+</li>
+<li><p>子表链接的属性同父表被链接的属性不完全相同，包括数据类型、长度、完整性约束等等。</p>
+</li>
+<li>父表被链接属性不是主键，或者没有建立索引。</li>
+</ul>
 
       
     </div>
@@ -416,8 +428,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -484,6 +505,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#劳资为什么要学SQL"><span class="nav-number">1.</span> <span class="nav-text">劳资为什么要学SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零零碎碎的经验"><span class="nav-number">2.</span> <span class="nav-text">零零碎碎的经验</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
