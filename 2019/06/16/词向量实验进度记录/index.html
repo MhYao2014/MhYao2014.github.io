@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-20T17:49:11.885Z">
+<meta property="og:updated_time" content="2019-06-21T05:10:53.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量实验进度记录">
 <meta name="twitter:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
@@ -322,8 +322,6 @@
         <p>词向量实验进度记录。要是能又好又快出活该多好。</p>
 <a id="more"></a>
 <p>对了，记录一下我的word embedding的实验，我一直在默默搞得那个大事情。总共要做8x6x17=816个实验（8种下游任务模型，6种embedding，17个数据集以及相应的NLP任务），还好每次能一次性运行16个实验，时间10分钟（？）左右就能出结果。最后一个第17个实验需要训练3到4个小时？6种embedding我已经生成了3种，还有3种还没生成出来。8个下游任务模型搭建好了3个模型了。现在已经完成的3x3x17=153个实验中，有14个实验能以超过3%至8%的性能超过目标。不再是以前的一两个实验以1%的性能超过目标。要想继续超越剩余的实验（目前都是以较小的差距落后），可能的补救措施还有1）重新找一个parser，改进tree的精度；2）重新调整loss，重新编写C++程序（好费力啊，还不一定奏效）3）重新编写从tree中生成训练样本的代码，生成更加复杂的训练样本（这个有很大希望，但是也保不准）。</p>
-<p>今天先不搞了。</p>
-<p>果然，不搞科研，屁事没有。不谈恋爱，逼事没有。。。</p>
 <p>拉个人一起搞还是有用啊，唐同学把ontonotes release 5.0搞定了。我直接捡现成的就好了。但是如果没有我一个学期的思想工作，他会入坑么？呵呵，王老师那边的学生根本忽悠不动。</p>
 <h2 id="List-of-坑"><a href="#List-of-坑" class="headerlink" title="List of 坑"></a>List of 坑</h2><ul>
 <li>围绕使用ontonotes release 5.0有数不清的坑，第一个算是下载到这个数据集，劳资从第一次遇见到解决这个问题用了1年，期间请教过水平比我高好多的人比如睿蠡（贼聪明）、占秋（奇技淫巧懂得贼多）和健宇（计算机专业出生的，很专业），都在尝试了一个下午之后就表示放弃了，搞不明白；更别谈网上也只见有人说自己用了，但是从来没有人说自己怎么拿到数据的，很奇怪（尤其是在大家都知道这个数据集不要钱，事出反常必有妖，不知道啥时候才能想明白这个问题）。最后还是得靠自己才能解决。</li>
