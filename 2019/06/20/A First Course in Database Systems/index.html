@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="CS基础之SQL学习Flag。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-20T17:29:25.021Z">
+<meta property="og:updated_time" content="2019-06-21T19:11:23.581Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A First Course in Database Systems">
 <meta name="twitter:description" content="CS基础之SQL学习Flag。">
@@ -326,6 +326,28 @@
 <p>在我这种野路子出生的状况下，第一年熟悉了一点点一点点的Computer Skill的情况下，还是趁早再学习一些Computer Science Skill吧。。。不然会死的很难看的（男人的直觉）。</p>
 <p>最近两天被这个SQL折磨的不轻。早点会早点完事，就像一开始觉得学点python足够搞research了，最后兜兜转转一年过去发现还是得会C++（不然搞不出有用的东西）；现在觉得学点SQL基本的查询语言就够了，谁知道会不会几年以后发现还是这种情况。</p>
 <p>磨刀不误砍柴功。</p>
+<h2 id="A-First-Course-in-Database-Systems"><a href="#A-First-Course-in-Database-Systems" class="headerlink" title="A First Course in Database Systems"></a>A First Course in Database Systems</h2><ul>
+<li>大部分网站中是会应用数据库的。</li>
+<li>The term database refers to a collection of data that is managed by a DBMS(data base manage system)。</li>
+<li>数据库 是通过DBMS创建和操纵的容器。数据库可以是保存在硬设备 上的文件，但也可以不是。在很大程度上说，数据库究竟是 文件还是别的什么东西并不重要，因为你并不直接访问数据 库；你使用的是DBMS，它替你访问数据库。—《MySQL必知必会》</li>
+<li>The “schema” in database means “logical structure of the data”.</li>
+<li>早期数据库从文件系统演变过来的。有层次型、网状、关系型数据库。</li>
+<li>Ted Codd搞了第一个关系数据库。</li>
+<li>SQL stands for  “Structured Query Language”.</li>
+<li>XML stands for “eXtensible Modeling Language”.</li>
+<li>数据库关心的一个基本问题是“Information Intergration”。解决办法有“data ware houses”和”middleware”。</li>
+<li>DBMS有两种命令：用户的查询和修改命令(DML—data-manipulation-language)；数据库管理员关心的”schema”(DDL—data-definition-language)。</li>
+<li>DML有两个子系统(Answering the Query; Transaction Processing(concurrency-control manager; logging and recovery manager)).</li>
+<li>Transaction Processing 有三个任务：logging; concurrency control(用锁来保护数据，实现并发); deadlock resolution。</li>
+<li>That’s all for chapter 1.</li>
+</ul>
+<h2 id="MySQL必知必会"><a href="#MySQL必知必会" class="headerlink" title="MySQL必知必会"></a>MySQL必知必会</h2><ul>
+<li>表：存储在表中的数据是一种类型的数据或一个清单。</li>
+<li>列：表中的一个字段。所有表都是由一个或多个列组成的。每个列都有相应的数据类型。</li>
+<li>行：表中的数据是按行存储的，所保存的每个记录存储在自己的行内。</li>
+<li>主键：表中每一行都应该有可以唯一标识自己的一列（或一组列）。MySQL强制要求作为主键的列满足：任意两行不同；主键列不允许NULL值。在使用多列作为主键时，上述条件必须应用到构成主键的所有列，所有列值的组合必须是唯一的（但单个列的值可以不唯一）。</li>
+<li>So much for today.</li>
+</ul>
 <h2 id="零零碎碎的经验"><a href="#零零碎碎的经验" class="headerlink" title="零零碎碎的经验"></a>零零碎碎的经验</h2><p>经过连续3天的踩坑，总结了4条不太成系统的经验（这4条坑了劳资3天），分别列举在这里：</p>
 <p>SQL建表添加外键失败通常有以下4个原因：</p>
 <ul>
@@ -336,6 +358,7 @@
 </li>
 <li>父表被链接属性不是主键，或者没有建立索引。</li>
 </ul>
+<p>劳资也不是那么蠢的要全部从头到尾看一遍，搜搜看别人的食用方法吧先。</p>
 
       
     </div>
@@ -519,7 +542,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#劳资为什么要学SQL"><span class="nav-number">1.</span> <span class="nav-text">劳资为什么要学SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零零碎碎的经验"><span class="nav-number">2.</span> <span class="nav-text">零零碎碎的经验</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#劳资为什么要学SQL"><span class="nav-number">1.</span> <span class="nav-text">劳资为什么要学SQL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-First-Course-in-Database-Systems"><span class="nav-number">2.</span> <span class="nav-text">A First Course in Database Systems</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MySQL必知必会"><span class="nav-number">3.</span> <span class="nav-text">MySQL必知必会</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#零零碎碎的经验"><span class="nav-number">4.</span> <span class="nav-text">零零碎碎的经验</span></a></li></ol></div>
             
 
           </div>
