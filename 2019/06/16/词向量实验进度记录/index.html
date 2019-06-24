@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="MhYao2014, NexT">
+  <meta name="keywords" content="w2v,科研,">
 
 
 
@@ -80,13 +80,14 @@
 
 
 <meta name="description" content="词向量实验进度记录。要是能又好又快出活该多好。">
+<meta name="keywords" content="w2v,科研">
 <meta property="og:type" content="article">
 <meta property="og:title" content="词向量实验进度记录">
 <meta property="og:url" content="http://yoursite.com/2019/06/16/词向量实验进度记录/index.html">
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-21T16:28:31.903Z">
+<meta property="og:updated_time" content="2019-06-24T02:22:59.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量实验进度记录">
 <meta name="twitter:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
@@ -327,8 +328,8 @@
 <li>围绕使用ontonotes release 5.0有数不清的坑，第一个算是下载到这个数据集，劳资从第一次遇见到解决这个问题用了1年，期间请教过水平比我高好多的人比如睿蠡（贼聪明）、占秋（奇技淫巧懂得贼多）和健宇（计算机专业出生的，很专业），都在尝试了一个下午之后就表示放弃了，搞不明白；更别谈网上也只见有人说自己用了，但是从来没有人说自己怎么拿到数据的，很奇怪（尤其是在大家都知道这个数据集不要钱，事出反常必有妖，不知道啥时候才能想明白这个问题）。最后还是得靠自己才能解决。</li>
 <li>使用这个数据集的第一大步是从标注数据集中（以一种很抽象的方式标注的）将有用信息以表的形式载入到数据库里面。这第一大步的第一小步是按照规定建立55张表格，现在勉强建立了51张，算是跨过去了这个坎。这一步因为我自己对数据库、SQL等等一无所知，加上数据集使用教程更新停滞（2011年左右停止更新，现在依然有很多人用，想不通好像是那个负责这个项目的大学宣布不搞这个项目了），加上Mysql发布版本的傻逼之处（不给下载旧版本，新版本又改了语法），加上python2.7停止维护（导致里面使用的sql语法也是错误的，同时还存在建表过程中逻辑上的错误，比如它先建了子表，再建父表（妈的，这样不报错才有鬼，不懂为什么当年没有人指责这一点：你放出来的代码是错的还不改。事出反常必有妖，又是一个不知道啥时候才能明白的背后故事））等等傻逼因素（别人没遇见过这些因素么？想不明白，为什么网上搜不到相关提问和解答，至少斯坦福和一众公司都在用这个东西啊？？？？一些NLP比赛也会用到的，是我太菜了么？）导致我举步维艰。</li>
 <li>下一个坑是要深入搞明白SQL在填写表格时，外键对填写操作时是怎么约束的，因为现在表格建立好了，要把语料填到表格里又是开始填了一半开始报莫名其妙的错误，大概意思是违反了外键约束。头痛。</li>
+<li>唐同学已经搞定上面的问题，下面开始准备生成树，我来写点文档，关于如何从Ontonotes release 5.0中生成你需要的语法树的过程。</li>
 </ul>
-<p>好烦啊啊啊啊啊啊，什么时候能有进度啊，太慢了太慢了太慢了。</p>
 
       
     </div>
@@ -343,6 +344,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/w2v/" rel="tag"># w2v</a>
+          
+            <a href="/tags/科研/" rel="tag"># 科研</a>
+          
+        </div>
       
 
       
@@ -442,7 +451,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -455,7 +464,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
