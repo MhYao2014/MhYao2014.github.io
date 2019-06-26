@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-25T08:14:53.088Z">
+<meta property="og:updated_time" content="2019-06-26T17:47:50.044Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量实验进度记录">
 <meta name="twitter:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
@@ -339,6 +339,7 @@
 <li>Please let me know if you have any further questions.</li>
 <li>Best regards,</li>
 <li>科研进度太慢了啊。</li>
+<li>今天学习了一下Unicode怎么回事。就是在搞pipeline的时候非常困难，每一步都会遇到错误。这次遇到的是，数据库里的数据都是以utf8格式存储的，所以调用MySQLdb读取到python2中时，如果用with open打开文件写入读取出的数据就会报错UnicodeDecodeError的错误，因为这样子打开的时候python2默认的encoding格式是ASCII，这样子就会有utf8的字符超过了ASCII的表示范围进而报错。所以改正的方法之一就是用python2中的codecs.open方法打开。打开的时候指定encoding格式为utf8就好了。具体就是codecs.open(‘corpus.txt’, ‘w’, ‘utf-8’)。后面有空再详细写一写unicode什么情况，python2的说明文档真香。</li>
 </ul>
 
       
