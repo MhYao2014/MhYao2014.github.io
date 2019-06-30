@@ -344,10 +344,10 @@ W^\top x_i + b \le -\epsilon_i, y_i = -1
 W^\top x_i + b \ge +1, y_i=+1\\
 W^\top x_i + b \le -1, y_i=-1
 \end{aligned}
-\right. \tag{6.4}\label{normlize}</script><p>下面着重考察那些使得上述不等式取得等号的数据点，假设$x<em>{i</em>{n}}^+$在超平面$l^+:W^\top x + b = +1$上；$x<em>{i</em>{m}}^-$在超平面$l^-:W^\top x + b = -1$上。那么显然这两个点是所有数据点中里分离超平面$W^\top x + b = 0$最近的两个点。那么我们就可以定义“间隔”这样一个概念：$l^+$与$l^-$之间的距离称为“间隔”（margin），这里我们记作$\gamma$。显然$l^+$与$l^-$之间的距离为$l^+$到$l$的距离加上$l$到$l^-$的距离（也就是$x<em>{i</em>{n}}^+$到$l$的距离加上$x<em>{i</em>{m}}^-$到$l$的距离）。</p>
-<p>根据距离公式$\eqref{distance}$，$x<em>{i</em>{n}}^+$到$l$的距离为：</p>
+\right. \tag{6.4}\label{normlize}</script><p>下面着重考察那些使得上述不等式取得等号的数据点，假设$x_{i_{n}}^+$在超平面$l^+:W^\top x + b = +1$上；$x_{i_{m}}^-$在超平面$l^-:W^\top x + b = -1$上。那么显然这两个点是所有数据点中里分离超平面$W^\top x + b = 0$最近的两个点。那么我们就可以定义“间隔”这样一个概念：$l^+$与$l^-$之间的距离称为“间隔”（margin），这里我们记作$\gamma$。显然$l^+$与$l^-$之间的距离为$l^+$到$l$的距离加上$l$到$l^-$的距离（也就是$x_{i_{n}}^+$到$l$的距离加上$x_{i_{m}}^-$到$l$的距离）。</p>
+<p>根据距离公式$\eqref{distance}$，$x_{i_{n}}^+$到$l$的距离为：</p>
 <script type="math/tex; mode=display">
-r^+ = \frac{|W^\top x_{i_{n}}^++b|}{\|W\|}=\frac{|+1|}{\|W\|} \tag{6.5}\label{r+}</script><p>上式第二个等号是因为$x<em>{i</em>{n}}^+$落在了$l^+$上，所以可以将$|W^\top x<em>{i</em>{n}}^++b|=1$代入上式。</p>
+r^+ = \frac{|W^\top x_{i_{n}}^++b|}{\|W\|}=\frac{|+1|}{\|W\|} \tag{6.5}\label{r+}</script><p>上式第二个等号是因为$x_{i_{n}}^+$落在了$l^+$上，所以可以将$|W^\top x_{i_{n}}^++b|=1$代入上式。</p>
 <p>同理我们有</p>
 <script type="math/tex; mode=display">
 r^- = \frac{|W^\top x_{i_{m}}^-+b|}{\|W\|}=\frac{|-1|}{\|W\|} \tag{6.6}\label{r-}</script><p>所以间隔$\gamma=\frac{2}{|W|}$。</p>
