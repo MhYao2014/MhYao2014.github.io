@@ -88,7 +88,7 @@
 <meta property="og:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下别人的理论。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG">
-<meta property="og:updated_time" content="2019-07-01T04:51:59.455Z">
+<meta property="og:updated_time" content="2019-07-01T07:49:26.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量故事搬砖">
 <meta name="twitter:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下别人的理论。">
@@ -351,6 +351,13 @@ G(k)=<u_{k}^{out},v_{c}^{in}>=[v_{c}^{in}]^{\top}*[U]*\mathbb{I}_{k}</script><p>
 P(k)=\frac{e^{G(k;\theta)}}{Z(\theta)}</script><p>本来这个分布应当用最大似然来估计它的参数，所用的样本就是类似上图中以$w_{c}$为中心词的所有词窗采样得到的$\mathbf{K}_{c}$。然后引入独立同分布的假设，将所有采集得到的样本编号对应代入公式(6)，求出一连串带参数的概率后，连乘再求导那一套。</p>
 <p>但是问题在于分母上那个$Z(\theta)$过于难算了一点（词表通常是百万级别的长度），所以用最大似然估计估计参数不现实。这个时候就需要借助一个2010年发表的解决这类难题的一个通用办法了，那就是NCE (Noise Contrastive Estimation)。原文发表于<em>Noise-contrastive estimation: A new estimation principle for unnormalized statistical models</em>，曾经CMU的NLP课程上有推荐同学们去看，但是Orz，我当时显然没有看（哭哭，因为有55页，谁看啊）。</p>
 <p>负采样就是应用了NCE的直接后果。下面且听我慢慢搬砖，NCE如何解决计算困难的问题，又是如何将上面的概率分布同词汇之间的互信息联系起来的。</p>
+<p>首先NCE是将原本的最大似然估计问题（这是一个优化问题），转化为了一系列的二分类问题。具体来说就是我们不再直接计算$P(k)$，而是转而计算下面的概率：</p>
+<script type="math/tex; mode=display">
+P(1|k)=\sigma(G(k;\theta)-\gamma)=\frac{1}{1+e^{-G(k;\theta)+\gamma}}</script><p>这里$\theta$还是原来待优化的参数，而$\gamma$则是新引入的要优化的参数。然后NCE的损失函数变为：</p>
+<script type="math/tex; mode=display">
+\arg\min_{\theta,\gamma}-\mathbb{E}_{k\backsim P(k)}\left\{\log\left(P(1|k)\right)\right\}-\mathbb{E}_{k\backsim U(k)}\left\{\log\left(P(0|k)\right)\right\}</script><p>我们需要说明的就是(7)优化后的结果同利用(5)结合最大似然估计优化后的结果是相同的。同时(7)式中第一项的期望底下要求$k$服从真实分布的实现途径就是通过词窗抽取样本（简而言之就是不需要计算概率），第二项的期望底下要求$k$服从某个人造分布时（比如平均分布）是需要计算概率从而实现采样的。同时第二项中的$P(0|k)$的计算过程就是利用人造分布随机生成一个上下文词的编号$k^{\prime}$，然后将该编号代入(6)得到$P(1|k^{\prime})$，那么显然</p>
+<script type="math/tex; mode=display">
+P(0|k^{\prime})=1-P(1|k^{\prime})</script><p>也就是说公式(7)中所谓新的标签$”1”,”0”$的判别规则就是：从词窗中采样得到的词对（服从真实分布）被称作正样本；从人造分布中采样得到的词对被称作负样本。这就是负采样名字的由来。</p>
 
       
     </div>
