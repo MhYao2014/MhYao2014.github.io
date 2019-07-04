@@ -88,7 +88,7 @@
 <meta property="og:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG">
-<meta property="og:updated_time" content="2019-07-04T08:59:11.766Z">
+<meta property="og:updated_time" content="2019-07-04T10:46:06.149Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量故事搬砖">
 <meta name="twitter:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。">
@@ -388,7 +388,7 @@ P(C_t=1|u_t)=\frac{P(C_t,u_t)}{P(u_t)}=\frac{P(u_t|C_t=1)*P(C_t=1)}{P(C_t=1)*P(u
 <li><p>选择合适的概率模型$P_{m}(\cdot;\theta)$，和噪声分布$P_{n}(\cdot)$，然后将采样得到的数据$u_t$分别代入$P_{m}(u_t;\theta),P_{n}(u_t)$中计算中间统计量（其中$\theta​$就是概率模型中待估计的参数）:</p>
 <script type="math/tex; mode=display">
 H(u_t;\theta)=\ln P_m(u_t;\theta)-\ln\mu P_{n}(u_t)</script></li>
-<li><p>将中间统计量代入$\theta(\cdot)$，得到模型基于当前参数$\theta$预测出的标签$\sigma(H(u_t;\theta))$。</p>
+<li><p>将中间统计量代入$\sigma(\cdot)$，得到模型基于当前参数$\theta$预测出的标签$\sigma(H(u_t;\theta))$。</p>
 </li>
 <li><p>计算当前样本得到的likely-hood，并计算交叉熵损失做梯度下降，直到算法收敛得到需要估计的参数。具体而言，模型最后优化的loss函数，在有无穷多样本的条件下可以写作：</p>
 <script type="math/tex; mode=display">
@@ -400,10 +400,17 @@ H(u_t;\theta)=\ln P_m(u_t;\theta)-\ln\mu P_{n}(u_t)</script></li>
 <script type="math/tex; mode=display">
 G(k)=<u_{k}^{out},v_{c}^{in}>=[v_{c}^{in}]^{\top}*[U]*\mathbb{I}_{k}</script><p>显然，中心词的in向量和剩下所有词的out向量就是随机变量$\mathbf{K}_{c}$所服从指数族分布的待估计参数，记作$\theta$。那么我们可以将$P_{m}(k;\theta)​$详细写成：</p>
 <script type="math/tex; mode=display">
-P_{m}(k)=\frac{e^{[v_{c}^{in}]^{\top}*[U]*\mathbb{I}_{k}}}{Z(\theta)}</script><p>然而，要想让</p>
-<p>本来这个分布应当用最大似然来估计它的参数，所用的样本就是类似上图中以$w_{c}$为中心词的所有词窗采样得到的$\mathbf{K}_{c}$。然后引入独立同分布的假设，将所有采集得到的样本编号对应代入公式(6)，求出一连串带参数的概率后，连乘再求导那一套。</p>
-<p>但是问题在于分母上那个$Z(\theta)​$过于难算了一点（词表通常是百万级别的长度），所以用最大似然估计估计参数不现实。这个时候就需要借助一个2010年发表的解决这类难题的一个通用办法了，那就是NCE (Noise Contrastive Estimation)。原文发表于<em>Noise-contrastive estimation: A new estimation principle for unnormalized statistical models</em>，曾经CMU的NLP课程上有推荐同学们去看，但是Orz，我当时显然没有看（哭哭，因为有55页，谁看啊）。</p>
-<p>负采样就是应用了NCE的直接后果。下面且听我慢慢搬砖，NCE如何解决计算困难的问题，又是如何将上面的概率分布同词汇之间的互信息联系起来的。</p>
+P_{m}(k;\theta)=\frac{e^{[v_{c}^{in}]^{\top}*[U]*\mathbb{I}_{k}}}{Z(\theta)}</script><p>然而，要想让NCE发挥出简化计算的威力，我们不能这么定义上面的$P_{m}(k;\theta)$。我们应当按照下面的套路直接定义出$\ln P_{m}(k;\theta)$：</p>
+<script type="math/tex; mode=display">
+\ln P_{m}(k;\theta)=\ln P_{m}^{o}(k;\theta)+\gamma=\ln e^{[v_{c}^{in}]^{\top}*[U]*\mathbb{I}_{k}} + \gamma = [v_{c}^{in}]^{\top}*[U]*\mathbb{I}_{k} + \gamma</script><p>上面新定义出来的$P_{m}^{o}(k;\theta)=e^{[v_{c}^{in}]^{\top}<em>[U]</em>\mathbb{I}_{k}}$就是原作者口中的没有进行归一化的分布。同时新定义出的$\gamma$也是一个待优化的标量参数（用一个随机数初始化）。也就是现在除了要估计原来的参数$\theta$，我们还得估计$\gamma$。采用NCE原文中的符号，就是我们需要估计增广参数$\hat{\theta}=\{\theta,\gamma\}$。显然将(13)式代回到原来NCE的框架中没有任何违和，所以我们依然得到了原始模型中需要估计的$\theta$，以及一个新得到的$\gamma$。作者宣称这样得到的$\theta$就是我们本想要的$\theta^{<em>}$并且最终得到的$\gamma$回满足$\gamma=\ln\frac{1}{Z(\theta^{</em>})}$。请大家好好想一下这个宣称到底什么意思。作者的原意是，因为配分函数在原始模型中最后就表现为一个固定的常数，所以我们直接靠$\gamma$来估计这个常数最后会是什么值。如此，NCE通过上面灵巧的定义，并没有直接计算配分函数，但是最后依然把它估计出来了。</p>
+<p>最后，我终于可以将直接应用NCE方法得到的词向量模型的loss函数给写出来了，以供后面对比。</p>
+<script type="math/tex; mode=display">
+\begin{array}{r@~l}
+&H(k;\theta)=\sigma([v_{c}^{in}]^{\top}*[U]*\mathbb{I}_{k} + \gamma-\ln\mu P_{n}(k))\\
+\arg\min_{\theta}& -\mathbb{E}_{k\backsim P_d}\left\{\log\sigma[H(k;\theta)]\right\}-\mathbb{E}_{k^{\prime}\backsim P_n}\left\{\log1-\sigma[H(k^{\prime};\theta)]\right\}
+\end{array}</script><p>苏剑林同学给了一种推导过能很直观的告诉你上面的优化式什么时候取得最优值。我这里用一下他的方法。首先将loss函数中的期望用积分代替。这就使得它变成了：</p>
+<script type="math/tex; mode=display">
+</script><p>本来这个分布应当用最大似然来估计它的参数，所用的样本就是类似上图中以$w_{c}​$为中心词的所有词窗采样得到的$\mathbf{K}_{c}​$。然后引入独立同分布的假设，将所有采集得到的样本编号对应代入公式(6)，求出一连串带参数的概率后，连乘再求导那一套。</p>
 <p>首先NCE是将原本的最大似然估计问题（这是一个优化问题），转化为了一系列的二分类问题。具体来说就是我们不再直接计算$P(k)​$，而是转而计算下面的概率：</p>
 <script type="math/tex; mode=display">
 P(1|k)=\sigma(G(k;\theta)-\gamma)=\frac{1}{1+e^{-G(k;\theta)+\gamma}}</script><p>这里$\theta​$还是原来待优化的参数，而$\gamma​$则是新引入的要优化的参数。然后NCE的损失函数变为：</p>
