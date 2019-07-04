@@ -88,7 +88,7 @@
 <meta property="og:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG">
-<meta property="og:updated_time" content="2019-07-04T08:04:25.470Z">
+<meta property="og:updated_time" content="2019-07-04T08:18:41.746Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量故事搬砖">
 <meta name="twitter:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。">
@@ -385,11 +385,18 @@ P(C_t=1|u_t)=\frac{P(C_t,u_t)}{P(u_t)}=\frac{P(u_t|C_t=1)*P(C_t=1)}{P(C_t=1)*P(u
 <ul>
 <li><p>按照随机变量$U$的采样规则进行采样，准备好相应的数据和标签。</p>
 </li>
-<li><p>选择合适的概率模型$P_{m}(\cdot;\theta)$，和噪声分布$P_{n}(\cdot)$，然后将采样得到的数据$u_t$分别代入$P_{m}(u_t;\theta),P_{n}(u_t)$中计算中间统计量（其中$\theta$就是概率模型中待估计的参数）:</p>
+<li><p>选择合适的概率模型$P_{m}(\cdot;\theta)$，和噪声分布$P_{n}(\cdot)$，然后将采样得到的数据$u_t$分别代入$P_{m}(u_t;\theta),P_{n}(u_t)$中计算中间统计量（其中$\theta​$就是概率模型中待估计的参数）:</p>
 <script type="math/tex; mode=display">
-G(u_t;\theta)=\ln P_m(u_t;\theta)-\ln P_{n}(u_t)</script></li>
-<li></li>
+G(u_t;\theta)=\ln P_m(u_t;\theta)-\ln\mu P_{n}(u_t)</script></li>
+<li><p>将中间统计量代入$\theta(\cdot)$，得到模型基于当前参数$\theta$预测出的标签$\sigma(G(u_t;\theta))$。</p>
+</li>
+<li><p>计算当前样本得到的likely-hood，并计算交叉熵损失做梯度下降，直到算法收敛得到需要估计的参数。具体而言，模型最后优化的loss函数，在有无穷多样本的条件下可以写作：</p>
+<script type="math/tex; mode=display">
+\arg\min_{\theta} -\mathbb{E}_{u\backsim P_d}\left\{\log\sigma[G(u;\theta)]\right\}-\mathbb{E}_{u^{\prime}\backsim P_n}\left\{\log1-\sigma[G(u^{\prime};\theta)]\right\}</script><p>上式应当好好考虑一下到底在干嘛，再接着往下读。</p>
+</li>
 </ul>
+<p>将中间统计量代入$\theta(\cdot)$，得到模型基于当前参数$\theta$预测出的标签$\sigma(G(u_t;\theta))$。</p>
+<p>计算当前样本得到的likely-hood，并计算交叉熵损失做梯度下降，直到算法收敛得到需要估计的参数。</p>
 <p>在word2vec中，能量函数$G(k)$是靠词向量的内积来定义的。对于一个给定的中心词$w_{c}$，我们用一个in词向量代表它$v_{c}^{in}$，词表中剩余词汇$w_{k}$（上下文词）我们用它们的out词向量$u_{k}^{out}$来代表。如此我们便可以将$G(k)$形式化的定义为下面的函数（借助了One-hot向量表示）</p>
 <script type="math/tex; mode=display">
 G(k)=<u_{k}^{out},v_{c}^{in}>=[v_{c}^{in}]^{\top}*[U]*\mathbb{I}_{k}</script><p>我们将中心词的in向量和剩下所有词的out向量作为随机变量$\mathbf{K}_{c}​$所服从指数族分布的待估计参数，记作$\theta​$。那么概率分布就可以写的更概括一点了：</p>
