@@ -88,7 +88,7 @@
 <meta property="og:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG">
-<meta property="og:updated_time" content="2019-07-04T07:08:47.702Z">
+<meta property="og:updated_time" content="2019-07-04T07:29:20.375Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量故事搬砖">
 <meta name="twitter:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。">
@@ -333,7 +333,7 @@
 <script type="math/tex; mode=display">
 PMI(w_1,w_2)=\log\left(\frac{P(w_1,w_2)}{P(w_1)P(w_2)}\right)</script><p>一般而言，根据那句名言“看看你跟什么样的人交往，就知道你是什么样的人”来搭建语言模型都是在建模$P(w_2|w_1)$。但是word2vec分析完了之后就发现其实是在建模$PMI(w_1,w_2)$。</p>
 <h2 id="词类比是扯淡"><a href="#词类比是扯淡" class="headerlink" title="词类比是扯淡"></a>词类比是扯淡</h2><p>如上，扯淡的东西不去管。</p>
-<h1 id="条件概率-NCE-负采样-互信息"><a href="#条件概率-NCE-负采样-互信息" class="headerlink" title="条件概率-NCE-负采样-互信息"></a>条件概率-NCE-负采样-互信息</h1><h2 id="Skip-gram在优化什么？-条件概率）"><a href="#Skip-gram在优化什么？-条件概率）" class="headerlink" title="Skip-gram在优化什么？(条件概率）"></a>Skip-gram在优化什么？(条件概率）</h2><p>下面我会直接给出word2vec中Skip-gram模型建模对象的定义，它反映了词汇和词汇之间的主题相关性。要讲清楚这个量，我们首先对每个词规定用三个量（它在词表中的编号，in向量和out向量）来代表它。比如，将词表中单词编号为$1,2,\cdots,i,\cdots,|V|$，那么第$i$个单词可以用$i,u^{out}_{i},v^{in}_{i}$这三种量来代表它。在后文中，为了书写和公式的美观，我会有时用One-hot向量$\mathbb{I}_{i}$来代替$i​$。</p>
+<h1 id="条件概率-NCE-负采样-互信息"><a href="#条件概率-NCE-负采样-互信息" class="headerlink" title="条件概率-NCE-负采样-互信息"></a>条件概率-NCE-负采样-互信息</h1><h2 id="Skip-gram在优化什么？-条件概率）"><a href="#Skip-gram在优化什么？-条件概率）" class="headerlink" title="Skip-gram在优化什么？(条件概率）"></a>Skip-gram在优化什么？(条件概率）</h2><p>下面我会直接给出word2vec中Skip-gram模型建模对象的定义，它反映了词汇和词汇之间的主题相关性。要讲清楚这个量，我们首先对每个词规定用三个量（它在词表中的编号，in向量和out向量）来代表它。比如，将词表中单词编号为$1,2,\cdots,i,\cdots,|V|​$，那么第$i​$个单词可以用$i,u^{out}_{i},v^{in}_{i}​$这三种量来代表它。在后文中，为了书写和公式的美观，我会有时用One-hot向量$\mathbb{I}_{i}​$来代替$i​$。</p>
 <p>如此我们便可以定义如下随机变量。对于一个中心词为$w_{c}​$的词窗（就是说中心词为词表中第$c​$个词），我们将词窗中剩余位置可能出现的单词的词表编号$\mathbf{K}​$设为一个随机变量。比如下图中的一个词窗就代表了对随机变量$\mathbf{K}​$的一系列采样过程。其中“<em>nlp</em>”是中心词，它的编号是随机变量$\mathbf{K}​$的一个参数（因此下面我都用$\mathbf{K}_{c}​$来表示这个随机变量）。而”<em>love</em>“，“<em>very</em>”等等单词都是对随机变量$\mathbf{K}_{c}​$的采样。显然，$\mathbf{K}_{c}​$的取值范围是$\{1, 2, \cdots, |V|\}​$等$|V|​$个离散的数值（$|V|​$是词表长度）。</p>
 <p><img src="/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG" alt="WordWindow"></p>
 <p>下面列几条声明，任何一条都没有笔误，如果你觉得其中有说不通的地方，那一定是你定义还没有理解正确。</p>
@@ -359,7 +359,7 @@ P(k)=\frac{e^{G(k)}}{Z}</script><p>其中$G(k)$是$k$的某个能量函数，而
 </ul>
 <h3 id="NCE为什么能估计参数"><a href="#NCE为什么能估计参数" class="headerlink" title="NCE为什么能估计参数"></a>NCE为什么能估计参数</h3><p>NCE的原文中说这个方法的灵感是一句话：如果我们利用已知的人造分布$P_{n}(x)​$，估计出了$\frac{P_{d}(x)}{P_{n}(x)}​$这个量，那么未知的真实分布$P_{d}(x)​$就被估计出来了。好吧，看着它将简单问题复杂化了，本来$P_{d}(x)​$就已经难以计算和估计了，为什么还要去估计更加复杂的$\frac{P_{d}(x)}{P_{n}(x)}​$呢？原作者怎么思考这个问题的我还不清楚，但是作者在文章中宣称这样迂回的估计方法能够适用于那些没有归一化的分布（就是估计方法本身不要求被估计量是一个积分等于1的概率分布），从而能够直接估计类似指数族分布中的分子项，绕过了分母中难算的配分函数。所以下面先说怎么从估计$\frac{P_{d}(x)}{P_{n}(x)}​$这个量设计出一个二分类的实验来做参数估计。</p>
 <p>首先$\frac{P_{d}(x)}{P_{n}(x)}$肯定不是一个概率分布了。如果我们考虑将随机变量$x$固定为$x_{0}$，那么这个量更多的是反映了一种信心：当前这个$x_{0}$是哪个分布生成的概率更大些？因而我们需要设计以下的实验来估计它。</p>
-<p>首先对真实分布$P_{d}(x)$做$T_{d}$次抽样得到一些列样本$\mathbf{X}=\{x_1,x_2,\cdots,x_{T_{d}}\}$；接着我们对人造分布（噪声分布）$P_{n}(y)$做$T_{n}$次抽样得到一系列样本$\mathbf{Y}=\{y_{1},y_{2},\cdots,y_{T_{n}}\}$。最后我们定义一个混合模型，设随机变量$U$的采样过程服从下面的规则：</p>
+<p>首先对真实分布$P_{d}(x)$做$T_{d}$次抽样得到一系列样本$\mathbf{X}=\{x_1,x_2,\cdots,x_{T_{d}}\}$；接着我们对人造分布（噪声分布）$P_{n}(y)$做$T_{n}$次抽样得到一系列样本$\mathbf{Y}=\{y_{1},y_{2},\cdots,y_{T_{n}}\}$。最后我们定义一个混合模型，设随机变量$U$的采样过程服从下面的规则：</p>
 <ul>
 <li>首先引入一个隐变量$z​$，它服从0-1分布。具体而言$P(z=1)=\frac{T_d}{T_d+T_n},P(z=0)=\frac{T_n}{T_d+T_n}​$。</li>
 <li>每次先对$z$采样，若$z=1$，那么就从真实分布$P_{d}(x)$中采样一个数据，并将该数据作为$U$的一个样本。</li>
@@ -367,7 +367,7 @@ P(k)=\frac{e^{G(k)}}{Z}</script><p>其中$G(k)$是$k$的某个能量函数，而
 </ul>
 <p>如此，$\mathbf{X}\bigcup\mathbf{Y}$便可以视作对随机变量$U$进行了一系列的采样后得到的数据集$\{u_1,u_2,\cdots,u_{T_d+T_n}\}$。同时我们对其中的每个数据都打上标签：若数据$u_{t}$采样自真实分布，那么它的标签$C_{t}=1$，否则标签$C_{t}=0$。显然，根据数据集的构成情况，我们有两个先验：</p>
 <script type="math/tex; mode=display">
-P(C_t=1)=\frac{T_d}{T_d+T_n},\ P(C_t=0)=\frac{T_n}{T_d+T_n}</script><p>下面考虑两个条件概率，它们很重要。第一个条件概率是：</p>
+P(C_t=1)=\frac{T_d}{T_d+T_n},\ P(C_t=0)=\frac{T_n}{T_d+T_n}</script><p>下面考虑两个条件概率，它们很重要。我只写一写第一个条件概率的推导，另一个完全一样：</p>
 <script type="math/tex; mode=display">
 P(C_t=1|u_t)=\frac{P(C_t,u_t)}{P(u_t)}=\frac{P(u_t|C_t=1)*P(C_t=1)}{P(C_t=1)*P(u_t|C_t=1)+P(C_t=0)*P(u_t|C_t=0)}</script><p>上式推导过程使用了贝叶斯公式和全概率公式，且没有跳步。这个时候又会分出两个版本的概率：</p>
 <ul>
@@ -376,7 +376,9 @@ P(C_t=1|u_t)=\frac{P(C_t,u_t)}{P(u_t)}=\frac{P(u_t|C_t=1)*P(C_t=1)}{P(C_t=1)*P(u
 \hat{P}_{d}(C_t=1|u_t)=\frac{P_{d}(u_t)*\frac{T_d}{T_d+T_n}}{\frac{T_d}{T_d+T_n}*P_{d}(u_t)+\frac{T_n}{T_d+T_n}*P_n(u_t)}=\frac{P_{d}(u_t)}{P_{d}(u_t)+\frac{T_n}{T_d}*P_n(u_t)}</script></li>
 <li><p>关于我们对$U$进行建模的时候的模型中的条件分布：</p>
 <script type="math/tex; mode=display">
-\hat{P}_{m}(C_t=1|u_t)=\frac{P_{m}(u_t)}{P_{m}(u_t)+\frac{T_n}{T_d}*P_n(u_t)}</script><p>显然我这里沿用了前面的符号：$d$表示真实分布，$m$表示模型分布，加上\hat是为了同前面的符号区分开来。</p>
+\hat{P}_{m}(C_t=1|u_t)=\frac{P_{m}(u_t)}{P_{m}(u_t)+\frac{T_n}{T_d}*P_n(u_t)}</script><p>显然我这里沿用了前面的符号：$d$表示真实分布，$m$表示模型分布，加上\hat是为了同前面的符号区分开来。接下来，我可以将上面的式子直接同logistic regression联系起来。首先定义$\mu=\frac{T_n}{T_d}$（悄咪咪的告诉你，这个量就是word2vec中的负样本数超参），然后对上式分子分母同时除去$P_{m}(u_t)$得到：</p>
+<script type="math/tex; mode=display">
+\hat{P}_{m}(C_t=1|u_t)=\frac{P_{m}(u_t)}{P_{m}(u_t)+\frac{T_n}{T_d}*P_n(u_t)}=\frac{1}{1+exp\left\{-\left[\ln\frac{P_m(u_t)}{\mu P_n(u_t)}\right]\right\}}=\sigma\left[\ln\frac{P_m(u_t)}{\mu P_n(u_t)}\right]</script><p>到了这里应该就很明显了。如何做logistic regression来估计</p>
 </li>
 </ul>
 <p>在word2vec中，能量函数$G(k)​$是靠词向量的内积来定义的。对于一个给定的中心词$w_{c}​$，我们用一个in词向量代表它$v_{c}^{in}​$，词表中剩余词汇$w_{k}​$（上下文词）我们用它们的out词向量$u_{k}^{out}​$来代表。如此我们便可以将$G(k)​$形式化的定义为下面的函数（借助了One-hot向量表示）</p>
