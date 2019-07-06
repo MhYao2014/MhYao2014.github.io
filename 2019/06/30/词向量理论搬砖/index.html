@@ -89,7 +89,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/levy.PNG">
-<meta property="og:updated_time" content="2019-07-06T05:33:50.536Z">
+<meta property="og:updated_time" content="2019-07-06T12:57:21.815Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量故事搬砖">
 <meta name="twitter:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。">
@@ -447,8 +447,35 @@ u_{k}^{out}*v_{c}^{in}=\ln \frac{P_{d}(w_k|w_c)}{P(w_k)}</script><p>上式终于
 <h1 id="最后的疑问"><a href="#最后的疑问" class="headerlink" title="最后的疑问"></a>最后的疑问</h1><p>花了这么久的时间来推导上面那个式子，我还是不幸的注意到这个结果同实际应用中还是有一个说不过去的鸿沟，那就是上式是in向量和out向量的内积，但是实际中大家只会用其中的某一个而不是两个一起用。就是实际应用中只会出现</p>
 <script type="math/tex; mode=display">
 v_k^{in}*v_{c}^{out}</script><p>我试验过，如果建模的时候强行只用in向量，而没有out向量，效果会变差。</p>
+<h2 id="针对这个疑问做的一点尝试"><a href="#针对这个疑问做的一点尝试" class="headerlink" title="针对这个疑问做的一点尝试"></a>针对这个疑问做的一点尝试</h2><p>上述疑问一个自然的想法是那我实际中来试试</p>
 <p>!!!!mother fucker!</p>
-<p>改了还不如不改。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>多喝水</th>
+<th>不熬夜</th>
+<th>多运动</th>
+<th>少吃零食</th>
+<th>控制情绪</th>
+<th>好好爱自己</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019.07.06</td>
+<td>没做到</td>
+<td>没做到</td>
+<td>3个小时</td>
+<td>做到了</td>
+<td>没做到</td>
+<td>？</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>好像整个世界在和你作对。。。。我网站上查网页查的好好的，断网了。。。。。。WRNMB</p>
 
       
     </div>
@@ -632,7 +659,7 @@ v_k^{in}*v_{c}^{out}</script><p>我试验过，如果建模的时候强行只用
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从最简单的讲起"><span class="nav-number">1.</span> <span class="nav-text">从最简单的讲起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#互信息的定义"><span class="nav-number">1.1.</span> <span class="nav-text">互信息的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词类比是扯淡"><span class="nav-number">1.2.</span> <span class="nav-text">词类比是扯淡</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件概率-NCE-负采样-互信息"><span class="nav-number">2.</span> <span class="nav-text">条件概率-NCE-负采样-互信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Skip-gram在优化什么？-条件概率）"><span class="nav-number">2.1.</span> <span class="nav-text">Skip-gram在优化什么？(条件概率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负采样同NCE之间的关系"><span class="nav-number">2.2.</span> <span class="nav-text">负采样同NCE之间的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NCE简化计算并建模条件概率"><span class="nav-number">2.3.</span> <span class="nav-text">NCE简化计算并建模条件概率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE为什么能估计参数"><span class="nav-number">2.3.1.</span> <span class="nav-text">NCE为什么能估计参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE为什么能简化计算"><span class="nav-number">2.3.2.</span> <span class="nav-text">NCE为什么能简化计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE建模了条件概率"><span class="nav-number">2.3.3.</span> <span class="nav-text">NCE建模了条件概率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负采样建模了点互信息-PMI"><span class="nav-number">2.4.</span> <span class="nav-text">负采样建模了点互信息(PMI)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#论文佐证"><span class="nav-number">2.4.1.</span> <span class="nav-text">论文佐证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后的疑问"><span class="nav-number">3.</span> <span class="nav-text">最后的疑问</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从最简单的讲起"><span class="nav-number">1.</span> <span class="nav-text">从最简单的讲起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#互信息的定义"><span class="nav-number">1.1.</span> <span class="nav-text">互信息的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词类比是扯淡"><span class="nav-number">1.2.</span> <span class="nav-text">词类比是扯淡</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件概率-NCE-负采样-互信息"><span class="nav-number">2.</span> <span class="nav-text">条件概率-NCE-负采样-互信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Skip-gram在优化什么？-条件概率）"><span class="nav-number">2.1.</span> <span class="nav-text">Skip-gram在优化什么？(条件概率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负采样同NCE之间的关系"><span class="nav-number">2.2.</span> <span class="nav-text">负采样同NCE之间的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NCE简化计算并建模条件概率"><span class="nav-number">2.3.</span> <span class="nav-text">NCE简化计算并建模条件概率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE为什么能估计参数"><span class="nav-number">2.3.1.</span> <span class="nav-text">NCE为什么能估计参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE为什么能简化计算"><span class="nav-number">2.3.2.</span> <span class="nav-text">NCE为什么能简化计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE建模了条件概率"><span class="nav-number">2.3.3.</span> <span class="nav-text">NCE建模了条件概率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负采样建模了点互信息-PMI"><span class="nav-number">2.4.</span> <span class="nav-text">负采样建模了点互信息(PMI)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#论文佐证"><span class="nav-number">2.4.1.</span> <span class="nav-text">论文佐证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后的疑问"><span class="nav-number">3.</span> <span class="nav-text">最后的疑问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#针对这个疑问做的一点尝试"><span class="nav-number">3.1.</span> <span class="nav-text">针对这个疑问做的一点尝试</span></a></li></ol></li></ol></div>
             
 
           </div>
