@@ -87,10 +87,13 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="CS基础之SQL学习Flag。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-22T07:57:43.058Z">
+<meta property="og:image" content="http://yoursite.com/assets/2019-06-20-A%20First%20Course%20in%20Database%20Systems/table-1562435377690.PNG">
+<meta property="og:image" content="http://yoursite.com/assets/2019-06-20-A%20First%20Course%20in%20Database%20Systems/XML-1562435399461.PNG">
+<meta property="og:updated_time" content="2019-07-07T07:06:46.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="A First Course in Database Systems">
 <meta name="twitter:description" content="CS基础之SQL学习Flag。">
+<meta name="twitter:image" content="http://yoursite.com/assets/2019-06-20-A%20First%20Course%20in%20Database%20Systems/table-1562435377690.PNG">
 
 
 
@@ -327,19 +330,36 @@
 <p>最近两天被这个SQL折磨的不轻。早点会早点完事，就像一开始觉得学点python足够搞research了，最后兜兜转转一年过去发现还是得会C++（不然搞不出有用的东西）；现在觉得学点SQL基本的查询语言就够了，谁知道会不会几年以后发现还是这种情况。</p>
 <p>磨刀不误砍柴功。</p>
 <h2 id="A-First-Course-in-Database-Systems"><a href="#A-First-Course-in-Database-Systems" class="headerlink" title="A First Course in Database Systems"></a>A First Course in Database Systems</h2><ul>
-<li>大部分网站中是会应用数据库的。</li>
-<li>The term database refers to a collection of data that is managed by a DBMS(data base manage system)。</li>
-<li>数据库 是通过DBMS创建和操纵的容器。数据库可以是保存在硬设备 上的文件，但也可以不是。在很大程度上说，数据库究竟是 文件还是别的什么东西并不重要，因为你并不直接访问数据 库；你使用的是DBMS，它替你访问数据库。—《MySQL必知必会》</li>
-<li>The “schema” in database means “logical structure of the data”.</li>
-<li>早期数据库从文件系统演变过来的。有层次型、网状、关系型数据库。</li>
-<li>Ted Codd搞了第一个关系数据库。</li>
-<li>SQL stands for  “Structured Query Language”.</li>
-<li>XML stands for “eXtensible Modeling Language”.</li>
-<li>数据库关心的一个基本问题是“Information Intergration”。解决办法有“data ware houses”和”middleware”。</li>
-<li>DBMS有两种命令：用户的查询和修改命令(DML—data-manipulation-language)；数据库管理员关心的”schema”(DDL—data-definition-language)。</li>
-<li>DML有两个子系统(Answering the Query; Transaction Processing(concurrency-control manager; logging and recovery manager)).</li>
-<li>Transaction Processing 有三个任务：logging; concurrency control(用锁来保护数据，实现并发); deadlock resolution。</li>
-<li>That’s all for chapter 1.</li>
+<li><p>大部分网站中是会应用数据库的。</p>
+</li>
+<li><p>The term database refers to a collection of data that is managed by a DBMS(data base manage system)。</p>
+</li>
+<li><p>数据库 是通过DBMS创建和操纵的容器。数据库可以是保存在硬设备 上的文件，但也可以不是。在很大程度上说，数据库究竟是 文件还是别的什么东西并不重要，因为你并不直接访问数据 库；你使用的是DBMS，它替你访问数据库。—《MySQL必知必会》</p>
+</li>
+<li><p>The “schema” in database means “logical structure of the data”.</p>
+</li>
+<li><p>早期数据库从文件系统演变过来的。有层次型、网状、关系型数据库。</p>
+</li>
+<li><p>Ted Codd搞了第一个关系数据库。</p>
+</li>
+<li><p>SQL stands for  “Structured Query Language”.</p>
+</li>
+<li><p>XML stands for “eXtensible Modeling Language”.</p>
+</li>
+<li><p>数据库关心的一个基本问题是“Information Intergration”。解决办法有“data ware houses”和”middleware”。</p>
+</li>
+<li><p>DBMS有两种命令：用户的查询和修改命令(DML—data-manipulation-language)；数据库管理员关心的”schema”(DDL—data-definition-language)。</p>
+</li>
+<li><p>DML有两个子系统(Answering the Query; Transaction Processing(concurrency-control manager; logging and recovery manager)).</p>
+</li>
+<li><p>Transaction Processing 有三个任务：logging; concurrency control(用锁来保护数据，实现并发); deadlock resolution。</p>
+</li>
+<li><p>That’s all for chapter 1.</p>
+</li>
+<li><p>主流的数据模型包括关系模型和半结构数据模型（XML）。下面两张图是同一个数据的两种表现形式。</p>
+<p><img src="/assets/2019-06-20-A First Course in Database Systems/table-1562435377690.PNG" alt="table"></p>
+<p><img src="/assets/2019-06-20-A First Course in Database Systems/XML-1562435399461.PNG" alt="XML"></p>
+</li>
 </ul>
 <h2 id="MySQL必知必会"><a href="#MySQL必知必会" class="headerlink" title="MySQL必知必会"></a>MySQL必知必会</h2><ul>
 <li>表：存储在表中的数据是一种类型的数据或一个清单。</li>
