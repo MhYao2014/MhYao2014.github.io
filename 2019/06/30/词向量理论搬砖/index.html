@@ -89,7 +89,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/levy.PNG">
-<meta property="og:updated_time" content="2019-07-06T17:03:11.346Z">
+<meta property="og:updated_time" content="2019-07-08T05:40:17.844Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量故事搬砖">
 <meta name="twitter:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。">
@@ -325,7 +325,7 @@
       
         <p>这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。</p>
 <a id="more"></a>
-<h1 id="从最简单的讲起"><a href="#从最简单的讲起" class="headerlink" title="从最简单的讲起"></a>从最简单的讲起</h1><p>王杰老师说过，word2vec的理论方面大有可为，可是呵呵如我的傻逼，慢慢才意识到这是什么意思。看过的一些论文都写的太晦涩了，今天发现一篇比较好的博文（苏剑林同学），一点一点的讲清楚了几个比较重要的问题。原文链接如下：<a href="https://kexue.fm/archives/5617" target="_blank" rel="noopener">https://kexue.fm/archives/5617</a>。一切的出发点是互信息，中间会和噪声对比估计技术（NCE, noise contrastive estimation）产生千丝万缕的关系。</p>
+<h1 id="从最简单的讲起"><a href="#从最简单的讲起" class="headerlink" title="从最简单的讲起"></a>从最简单的讲起</h1><p>某人说过，word2vec的理论方面大有可为，可是呵呵如我的傻逼，慢慢才意识到这是什么意思。看过的一些论文都写的太晦涩了，今天发现一篇比较好的博文（苏剑林同学），一点一点的讲清楚了几个比较重要的问题。原文链接如下：<a href="https://kexue.fm/archives/5617" target="_blank" rel="noopener">https://kexue.fm/archives/5617</a>。一切的出发点是互信息，中间会和噪声对比估计技术（NCE, noise contrastive estimation）产生千丝万缕的关系。</p>
 <p>NLP中的问题多种多样，但是有一个问题比较能讲清楚，那就是我们需要从文本中估计两个实体之间的主题相关性。比如估计“哈利波特”同“霍格沃茨”这两个实体主题相关性。我吐槽一下，这里的分析大多是适用于名词的，因为用名词代表实体再自然不过了。但是动词，介词，形容词等等能够表示一些关系的词语（对应知识图谱里的”relation”和“schema”）我觉得并不适用。你能讲关系之间还有主题相关性么？父子关系，母子关系，爷孙关系这三个关系中到底谁同谁的主题相关性更高一些呢？</p>
 <p>那怎么估计实体之间的主题相关性呢？这个基本的工具就是计算两个实体之间的互信息。word2vec就是对这个互信息估计的又快又好。</p>
 <h2 id="互信息的定义"><a href="#互信息的定义" class="headerlink" title="互信息的定义"></a>互信息的定义</h2><p>在语料中，两个单词$w_1$，$w_2$因为主题相同而一同出现的概率是它们随机出现在一起的概率的多少倍呢？这个量可以用两个单词的互信息度量：</p>
@@ -468,6 +468,15 @@ v_k^{in}*v_{c}^{out}</script><p>我试验过，如果建模的时候强行只用
 <td>没做到</td>
 <td>没做到</td>
 <td>3个小时</td>
+<td>做到了</td>
+<td>没做到</td>
+<td>？</td>
+</tr>
+<tr>
+<td>2019.07.07</td>
+<td>没做到</td>
+<td>失眠了</td>
+<td></td>
 <td>做到了</td>
 <td>没做到</td>
 <td>？</td>
