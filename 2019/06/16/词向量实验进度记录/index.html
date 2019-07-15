@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="w2v,科研,">
+  <meta name="keywords" content="科研,w2v,">
 
 
 
@@ -80,14 +80,14 @@
 
 
 <meta name="description" content="词向量实验进度记录。要是能又好又快出活该多好。">
-<meta name="keywords" content="w2v,科研">
+<meta name="keywords" content="科研,w2v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="词向量实验进度记录">
 <meta property="og:url" content="http://yoursite.com/2019/06/16/词向量实验进度记录/index.html">
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-07-15T14:46:48.006Z">
+<meta property="og:updated_time" content="2019-07-15T18:45:20.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量实验进度记录">
 <meta name="twitter:description" content="词向量实验进度记录。要是能又好又快出活该多好。">
@@ -325,23 +325,43 @@
 <p>对了，记录一下我的word embedding的实验，我一直在默默搞得那个大事情。总共要做8x6x17=816个实验（8种下游任务模型，6种embedding，17个数据集以及相应的NLP任务），还好每次能一次性运行16个实验，时间10分钟（？）左右就能出结果。最后一个第17个实验需要训练3到4个小时？6种embedding我已经生成了3种，还有3种还没生成出来。8个下游任务模型搭建好了3个模型了。现在已经完成的3x3x17=153个实验中，有14个实验能以超过3%至8%的性能超过目标。不再是以前的一两个实验以1%的性能超过目标。要想继续超越剩余的实验（目前都是以较小的差距落后），可能的补救措施还有1）重新找一个parser，改进tree的精度；2）重新调整loss，重新编写C++程序（好费力啊，还不一定奏效）3）重新编写从tree中生成训练样本的代码，生成更加复杂的训练样本（这个有很大希望，但是也保不准）。</p>
 <p>拉个人一起搞还是有用啊，唐同学把ontonotes release 5.0搞定了。我直接捡现成的就好了。但是如果没有我一个学期的思想工作，他会入坑么？呵呵，王老师那边的学生根本忽悠不动。</p>
 <h2 id="List-of-坑"><a href="#List-of-坑" class="headerlink" title="List of 坑"></a>List of 坑</h2><ul>
-<li>围绕使用ontonotes release 5.0有数不清的坑，第一个算是下载到这个数据集，劳资从第一次遇见到解决这个问题用了1年，期间请教过水平比我高好多的人比如睿蠡（贼聪明）、占秋（奇技淫巧懂得贼多）和健宇（计算机专业出生的，很专业），都在尝试了一个下午之后就表示放弃了，搞不明白；更别谈网上也只见有人说自己用了，但是从来没有人说自己怎么拿到数据的，很奇怪（尤其是在大家都知道这个数据集不要钱，事出反常必有妖，不知道啥时候才能想明白这个问题）。最后还是得靠自己才能解决。</li>
-<li>使用这个数据集的第一大步是从标注数据集中（以一种很抽象的方式标注的）将有用信息以表的形式载入到数据库里面。这第一大步的第一小步是按照规定建立55张表格，现在勉强建立了51张，算是跨过去了这个坎。这一步因为我自己对数据库、SQL等等一无所知，加上数据集使用教程更新停滞（2011年左右停止更新，现在依然有很多人用，想不通好像是那个负责这个项目的大学宣布不搞这个项目了），加上Mysql发布版本的傻逼之处（不给下载旧版本，新版本又改了语法），加上python2.7停止维护（导致里面使用的sql语法也是错误的，同时还存在建表过程中逻辑上的错误，比如它先建了子表，再建父表（妈的，这样不报错才有鬼，不懂为什么当年没有人指责这一点：你放出来的代码是错的还不改。事出反常必有妖，又是一个不知道啥时候才能明白的背后故事））等等傻逼因素（别人没遇见过这些因素么？想不明白，为什么网上搜不到相关提问和解答，至少斯坦福和一众公司都在用这个东西啊？？？？一些NLP比赛也会用到的，是我太菜了么？）导致我举步维艰。</li>
-<li>下一个坑是要深入搞明白SQL在填写表格时，外键对填写操作时是怎么约束的，因为现在表格建立好了，要把语料填到表格里又是开始填了一半开始报莫名其妙的错误，大概意思是违反了外键约束。头痛。</li>
-<li>唐同学已经搞定上面的问题，下面开始准备生成树，我来写点文档，关于如何从Ontonotes release 5.0中生成你需要的语法树的过程。</li>
-<li>从Ontonotes release 5.0中生成你需要的语法树的过程在原理上搞定啦。就剩下如何用MySQL和shell脚本写一个规范的数据处理pipeline啦。聊以慰藉。回去睡觉。</li>
-<li>生活教你做人，Ontonotes release 5.0需要授权才能使用，很有可能搞了这么久又白搞。生活叫你做人，也不算，如果实验效果好，也未尝不可争取授权。可能需要直接发邮件问一下LDC我们USTC有没有被授权了。</li>
-<li>发过邮件了。希望不要被放到垃圾邮箱中。</li>
-<li>这个事给我的打击还是有点大的。这就是打脸啊(又一次被证明天真)。就算你意识到有什么不对劲，你还是会跳到这个火坑里。好烦躁啊。能不能做点有用的事情？</li>
-<li>LDC回复邮件了，但是我没看懂他的意思。。。丢人。。。</li>
-<li>Hello MingHong,</li>
-<li>Thank you for contacting us. Your usage is bound by the attached Agreement. You can only use the corpus in conjunction with work at USTC. You may not use the corpus under any other circumstances, or in conjunction with another organization (school, company, etc.)</li>
-<li>Please let me know if you have any further questions.</li>
-<li>Best regards,</li>
-<li>科研进度太慢了啊。</li>
-<li>今天学习了一下Unicode怎么回事。就是在搞pipeline的时候非常困难，每一步都会遇到错误。这次遇到的是，数据库里的数据都是以utf8格式存储的，所以调用MySQLdb读取到python2中时，如果用with open打开文件写入读取出的数据就会报错UnicodeDecodeError的错误，因为这样子打开的时候python2默认的encoding格式是ASCII，这样子就会有utf8的字符超过了ASCII的表示范围进而报错。所以改正的方法之一就是用python2中的codecs.open方法打开。打开的时候指定encoding格式为utf8就好了。具体就是codecs.open(‘corpus.txt’, ‘w’, ‘utf-8’)。后面有空再详细写一写unicode什么情况，python2的说明文档真香。</li>
-<li>cvt_text的模型跑起来了，但是如何应用在原始语料上还未可知，因为源代码用的是tensorflow写的，导致模型的“mode”必须得是“train”或者”eval”，前者需要标签，后者用起来贼别扭（对于训练好的模型，它本身已经对“关系”标签做了编号规定，但是构建计算图，重新载入这个模型的时候还需要你再提供一遍“关系”标签。。。那怎么做到前后一致？我要怎么提供？？？？？Tensorflow sucks!）。</li>
-<li>在论文里又开辟了一个章节。预计会多水一页。这一页能起到衔接文章思路的作用。说实话，这样子写俺的论文有点结构混乱了，没按八股的形式编排，但是去你妈的，劳资先这样写了。实验效果还是有点好玩的。就是还是没有100%坦诚。By not telling something, you can tell a huge lie。这点隐藏的东西最后还是得说出来的，不然寝食难安啊。</li>
+<li><p>围绕使用ontonotes release 5.0有数不清的坑，第一个算是下载到这个数据集，劳资从第一次遇见到解决这个问题用了1年，期间请教过水平比我高好多的人比如睿蠡（贼聪明）、占秋（奇技淫巧懂得贼多）和健宇（计算机专业出生的，很专业），都在尝试了一个下午之后就表示放弃了，搞不明白；更别谈网上也只见有人说自己用了，但是从来没有人说自己怎么拿到数据的，很奇怪（尤其是在大家都知道这个数据集不要钱，事出反常必有妖，不知道啥时候才能想明白这个问题）。最后还是得靠自己才能解决。</p>
+</li>
+<li><p>使用这个数据集的第一大步是从标注数据集中（以一种很抽象的方式标注的）将有用信息以表的形式载入到数据库里面。这第一大步的第一小步是按照规定建立55张表格，现在勉强建立了51张，算是跨过去了这个坎。这一步因为我自己对数据库、SQL等等一无所知，加上数据集使用教程更新停滞（2011年左右停止更新，现在依然有很多人用，想不通好像是那个负责这个项目的大学宣布不搞这个项目了），加上Mysql发布版本的傻逼之处（不给下载旧版本，新版本又改了语法），加上python2.7停止维护（导致里面使用的sql语法也是错误的，同时还存在建表过程中逻辑上的错误，比如它先建了子表，再建父表（妈的，这样不报错才有鬼，不懂为什么当年没有人指责这一点：你放出来的代码是错的还不改。事出反常必有妖，又是一个不知道啥时候才能明白的背后故事））等等傻逼因素（别人没遇见过这些因素么？想不明白，为什么网上搜不到相关提问和解答，至少斯坦福和一众公司都在用这个东西啊？？？？一些NLP比赛也会用到的，是我太菜了么？）导致我举步维艰。</p>
+</li>
+<li><p>下一个坑是要深入搞明白SQL在填写表格时，外键对填写操作时是怎么约束的，因为现在表格建立好了，要把语料填到表格里又是开始填了一半开始报莫名其妙的错误，大概意思是违反了外键约束。头痛。</p>
+</li>
+<li><p>唐同学已经搞定上面的问题，下面开始准备生成树，我来写点文档，关于如何从Ontonotes release 5.0中生成你需要的语法树的过程。</p>
+</li>
+<li><p>从Ontonotes release 5.0中生成你需要的语法树的过程在原理上搞定啦。就剩下如何用MySQL和shell脚本写一个规范的数据处理pipeline啦。聊以慰藉。回去睡觉。</p>
+</li>
+<li><p>生活教你做人，Ontonotes release 5.0需要授权才能使用，很有可能搞了这么久又白搞。生活叫你做人，也不算，如果实验效果好，也未尝不可争取授权。可能需要直接发邮件问一下LDC我们USTC有没有被授权了。</p>
+</li>
+<li><p>发过邮件了。希望不要被放到垃圾邮箱中。</p>
+</li>
+<li><p>这个事给我的打击还是有点大的。这就是打脸啊(又一次被证明天真)。就算你意识到有什么不对劲，你还是会跳到这个火坑里。好烦躁啊。能不能做点有用的事情？</p>
+</li>
+<li><p>LDC回复邮件了，但是我没看懂他的意思。。。丢人。。。</p>
+</li>
+<li><p>Hello MingHong,</p>
+</li>
+<li><p>Thank you for contacting us. Your usage is bound by the attached Agreement. You can only use the corpus in conjunction with work at USTC. You may not use the corpus under any other circumstances, or in conjunction with another organization (school, company, etc.)</p>
+</li>
+<li><p>Please let me know if you have any further questions.</p>
+</li>
+<li><p>Best regards,</p>
+</li>
+<li><p>科研进度太慢了啊。</p>
+</li>
+<li><p>今天学习了一下Unicode怎么回事。就是在搞pipeline的时候非常困难，每一步都会遇到错误。这次遇到的是，数据库里的数据都是以utf8格式存储的，所以调用MySQLdb读取到python2中时，如果用with open打开文件写入读取出的数据就会报错UnicodeDecodeError的错误，因为这样子打开的时候python2默认的encoding格式是ASCII，这样子就会有utf8的字符超过了ASCII的表示范围进而报错。所以改正的方法之一就是用python2中的codecs.open方法打开。打开的时候指定encoding格式为utf8就好了。具体就是codecs.open(‘corpus.txt’, ‘w’, ‘utf-8’)。后面有空再详细写一写unicode什么情况，python2的说明文档真香。</p>
+</li>
+<li><p>cvt_text的模型跑起来了，但是如何应用在原始语料上还未可知，因为源代码用的是tensorflow写的，导致模型的“mode”必须得是“train”或者”eval”，前者需要标签，后者用起来贼别扭（对于训练好的模型，它本身已经对“关系”标签做了编号规定，但是构建计算图，重新载入这个模型的时候还需要你再提供一遍“关系”标签。。。那怎么做到前后一致？我要怎么提供？？？？？Tensorflow sucks!）。</p>
+</li>
+<li><p>在论文里又开辟了一个章节。预计会多水一页。这一页能起到衔接文章思路的作用。说实话，这样子写俺的论文有点结构混乱了，没按八股的形式编排，但是去你妈的，劳资先这样写了。实验效果还是有点好玩的。就是还是没有100%坦诚。By not telling something, you can tell a huge lie。这点隐藏的东西最后还是得说出来的，不然寝食难安啊。</p>
+</li>
+<li><p>记录一下文章的各个部分的进展吧：</p>
+<p>| 章节         | 现状                                                         | 计划                                                         |<br>| —————— | —————————————————————————————— | —————————————————————————————— |<br>| abstract     | 完成初稿，未修订。                                           | 定期修改                                                     |<br>| Introduction | 完成初稿，讲了大概的思路，motivation不记得有没有讲出来了，未修订。 | 从可解释性方面入手提高motivation的立意。可以攻击注意力机制(当前主流)的不足。 |<br>| Related Work | 完成初稿，讲了两种信息来源的两条研究线路，还有关于词向量如何评估的问题。 | 定期修改                                                     |<br>| Background   | 完成了对负采样技术的理论介绍，以及相应的实验证明，得出第一个结论：语义相关程度可以只由词对间的余弦相似度刻画，从而为更多的语法信息腾挪了位置，提供了词向量中信息来源直观可解释的基础。<br>完成了对双曲空间的理论介绍，表明了双曲空间天然的会将语法树信息以模长的形式保存下来（具体而言体现为双曲距离），和词向量的余弦相似度刻画完美契合。 | 完善一下语言以及画图                                         |<br>| Our model    | 完成了非常粗糙的初稿，分别给出了算法中需要准备的部分：线性语境如何采样得到；依存语境如何采样得到；两部分的语境各用什么样的loss函数去训练。还有一个算法流程表。模型采用CPU多线程的异步Hogwild!算法训练，训练步长线性缩减至0 | C++代码写完了。论文还没有讨论收敛性的问题，重点找低年级同学讨论一下。 |<br>| Experiments  | 实验部分设计<br>实验变量：不同的词向量，不同的训练语料，不同的下游任务模型（词袋、CNN、LSTM、Transformer），不同的测试任务（Intrinsic，Extrinsic，inference!）<br>已经完成的部分：<br>训练语料：mbta(清洗干净了)，wiki2010（洗的不是很干净），其他暂时没有了<br>词向量：skip-gram，fastText已经能稳定的在不同的语料上训练了；Glove还没有搞定；extvec还没有搞定。<br>不同的下游任务模型：能利用embedding进行推理的模型还没看到。重点找一下。<br>不同的测试任务：17种测试语料准备好了，相应的测试代码也有。<br>目前的实验结论：在个别inference任务上能够有较大提升，但是在语义相关性方面的性能均有所落后。 | 1.把glove准备好。<br>2.调研能够利用好我embedding的下游模型。 |<br>| conclusion   | 重复吹水一波，还没有写                                       |                                                              |<br>| appendix     | 详细记录实验设置，每个任务的功用。                           |                                                              |</p>
+</li>
 </ul>
 
       
@@ -360,9 +380,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/w2v/" rel="tag"># w2v</a>
-          
             <a href="/tags/科研/" rel="tag"># 科研</a>
+          
+            <a href="/tags/w2v/" rel="tag"># w2v</a>
           
         </div>
       
