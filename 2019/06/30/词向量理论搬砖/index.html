@@ -89,7 +89,7 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/levy.PNG">
-<meta property="og:updated_time" content="2019-07-21T13:46:41.444Z">
+<meta property="og:updated_time" content="2019-07-25T16:52:04.799Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量故事搬砖">
 <meta name="twitter:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。">
@@ -447,51 +447,17 @@ u_{k}^{out}*v_{c}^{in}=\ln \frac{P_{d}(w_k|w_c)}{P(w_k)}</script><p>上式终于
 <h1 id="最后的疑问"><a href="#最后的疑问" class="headerlink" title="最后的疑问"></a>最后的疑问</h1><p>花了这么久的时间来推导上面那个式子，我还是不幸的注意到这个结果同实际应用中还是有一个说不过去的鸿沟，那就是上式是in向量和out向量的内积，但是实际中大家只会用其中的某一个而不是两个一起用。就是实际应用中只会出现</p>
 <script type="math/tex; mode=display">
 v_j^{in}*v_{i}^{out}</script><p>我试验过，如果建模的时候强行只用in向量，而没有out向量，效果会变差。</p>
-<p>为了回答这个问题，我近日又做了很多的尝试。比如，我渐渐意识到$v_j^{in}*v_i^{out}$为啥内积会大会小呢？肯定是（？这么笃定？）因为$P(K_i)$与$P(K_j)$这两个分布本身非常相似。我决定具体的show一下$P(K_i)$与$P(K_j)$的相似性是如何塑造了$v_j^{in}$与$v_i^{out}$的相似性。</p>
-<h2 id="从loss出发"><a href="#从loss出发" class="headerlink" title="从loss出发"></a>从loss出发</h2><p>注意到训练的时候，固定k和i，loss函数会强迫$\hat{P}_{m}(y|k;i)=\hat{P}_{d}(y|k;i)$，同样的强迫$\hat{P}_{m}(y|k;j)$“逼近”$\hat{P}_{d}(y|k;j)$。用公式表示，那就是在KL散度意义上的“逼近”。</p>
+<p>为了回答这个问题，我近日又做了很多的尝试。比如，我渐渐意识到$v_j^{in}*v_i^{out}​$为啥内积会大会小呢？肯定是（？这么笃定？）因为$P(K_i)​$与$P(K_j)​$这两个分布本身非常相似。我决定具体的show一下$P(K_i)​$与$P(K_j)​$的相似性是如何塑造了$v_j^{in}​$与$v_i^{out}​$的相似性。</p>
+<h2 id="从loss出发"><a href="#从loss出发" class="headerlink" title="从loss出发"></a>从loss出发</h2><p>注意到训练的时候，固定k和i，loss函数强迫$\hat{P}_{m}(y|k;i)$“逼近”$\hat{P}_{d}(y|k;i)$，同样的强迫$\hat{P}_{m}(y|k;j)$“逼近”$\hat{P}_{d}(y|k;j)$。用公式表示，那就是在KL散度意义上的“逼近”。</p>
 <script type="math/tex; mode=display">
 \begin{equation}
-\hat{P}_{m}(y|k;i)\stackrel{KL}{\longrightarrow}\hat{P}_{d}(y|k;i)\\
-\hat{P}_{m}(y|k;j)\stackrel{KL}{\longrightarrow}\hat{P}_{d}(y|k;j)\\
-\end{equation}</script><p>然而，就在我进一步考虑表示$\hat{P}_{d}(y|k;i)​$与$\hat{P}_{d}(y|k;j)​$的关系时，我意识到KL散度不再合适。因为显然两者都是真实分布，我们必然需要的是对称的散度。进一步的，那么是不是上面的逼近过程也应该以对称的散度去逼近呢？这样是否会提升性能，让$\hat{P}_{d}(y|k;i)​$与$\hat{P}_{d}(y|k;j)​$的相近关系更好的传递到$\hat{P}_{m}(y|k;i)​$与$\hat{P}_{m}(y|k;j)​$间呢？（因为可以用三角不等式加以约束了）。这些根本不对啊</p>
-<p>都是错的。$\hat{P}_{m}(y|k;i)​$中的随机变量只能取2个值，一个二项分布求啥Wasserstein Loss啊。太傻比了。</p>
-<h2 id="针对这个疑问做的一点尝试"><a href="#针对这个疑问做的一点尝试" class="headerlink" title="针对这个疑问做的一点尝试"></a>针对这个疑问做的一点尝试</h2><p>上述疑问一个自然的想法是那我实际中来试试</p>
-<p>!!!!mother fucker!</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>日期</th>
-<th>多喝水</th>
-<th>不熬夜</th>
-<th>多运动</th>
-<th>少吃零食</th>
-<th>控制情绪</th>
-<th>好好爱自己</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2019.07.06</td>
-<td>没做到</td>
-<td>没做到</td>
-<td>3个小时</td>
-<td>做到了</td>
-<td>没做到</td>
-<td>？</td>
-</tr>
-<tr>
-<td>2019.07.07</td>
-<td>没做到</td>
-<td>失眠了</td>
-<td></td>
-<td>做到了</td>
-<td>没做到</td>
-<td>？</td>
-</tr>
-</tbody>
-</table>
-</div>
+\hat{P}_{m}(y|k;i)=\hat{P}_{d}(y|k;i)\\
+\hat{P}_{m}(y|k;j)=\hat{P}_{d}(y|k;j)\\
+\end{equation}</script><p>将上式展开可以得到</p>
+<script type="math/tex; mode=display">
+P_{m}(k;i)=P_{d}(k;i);\ \ P_{m}(k;j)=P_{d}(k;j)</script><p>进一步考虑$P_{d}(k;j)$与$P_{d}(k;i)​$的关系，KL散度不再合适。因为显然两者都是真实分布，我们必然需要的是对称的距离。这里引入Wasserstein Loss。</p>
+<p>未完待续。。。</p>
+<h2 id="一条不一样的道路"><a href="#一条不一样的道路" class="headerlink" title="一条不一样的道路"></a>一条不一样的道路</h2><p>最近又把2016年马腾宇（姚班出身，普林斯顿博士，斯坦福AP）大佬在他得了ACM最佳博士论文奖提名的博士论文中关于词向量的一些结论拿出来看了一遍（以前太菜是看也看不懂的，不知道为啥他要讨论这些问题），发现了他处理上述疑问的步骤：通过求联合概率分布时，对中间变量out向量进行积分，从而消去这些讨人厌的东西，直接得到联合概率分布同in向量之间的关系，最后导出了PMI同in向量内积间的关系。</p>
 
       
     </div>
@@ -675,7 +641,7 @@ v_j^{in}*v_{i}^{out}</script><p>我试验过，如果建模的时候强行只用
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从最简单的讲起"><span class="nav-number">1.</span> <span class="nav-text">从最简单的讲起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#互信息的定义"><span class="nav-number">1.1.</span> <span class="nav-text">互信息的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词类比是扯淡"><span class="nav-number">1.2.</span> <span class="nav-text">词类比是扯淡</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件概率-NCE-负采样-互信息"><span class="nav-number">2.</span> <span class="nav-text">条件概率-NCE-负采样-互信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Skip-gram在优化什么？-条件概率）"><span class="nav-number">2.1.</span> <span class="nav-text">Skip-gram在优化什么？(条件概率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负采样同NCE之间的关系"><span class="nav-number">2.2.</span> <span class="nav-text">负采样同NCE之间的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NCE简化计算并建模条件概率"><span class="nav-number">2.3.</span> <span class="nav-text">NCE简化计算并建模条件概率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE为什么能估计参数"><span class="nav-number">2.3.1.</span> <span class="nav-text">NCE为什么能估计参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE为什么能简化计算"><span class="nav-number">2.3.2.</span> <span class="nav-text">NCE为什么能简化计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE建模了条件概率"><span class="nav-number">2.3.3.</span> <span class="nav-text">NCE建模了条件概率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负采样建模了点互信息-PMI"><span class="nav-number">2.4.</span> <span class="nav-text">负采样建模了点互信息(PMI)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#论文佐证"><span class="nav-number">2.4.1.</span> <span class="nav-text">论文佐证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后的疑问"><span class="nav-number">3.</span> <span class="nav-text">最后的疑问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从loss出发"><span class="nav-number">3.1.</span> <span class="nav-text">从loss出发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#针对这个疑问做的一点尝试"><span class="nav-number">3.2.</span> <span class="nav-text">针对这个疑问做的一点尝试</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#从最简单的讲起"><span class="nav-number">1.</span> <span class="nav-text">从最简单的讲起</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#互信息的定义"><span class="nav-number">1.1.</span> <span class="nav-text">互信息的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#词类比是扯淡"><span class="nav-number">1.2.</span> <span class="nav-text">词类比是扯淡</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#条件概率-NCE-负采样-互信息"><span class="nav-number">2.</span> <span class="nav-text">条件概率-NCE-负采样-互信息</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Skip-gram在优化什么？-条件概率）"><span class="nav-number">2.1.</span> <span class="nav-text">Skip-gram在优化什么？(条件概率）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负采样同NCE之间的关系"><span class="nav-number">2.2.</span> <span class="nav-text">负采样同NCE之间的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NCE简化计算并建模条件概率"><span class="nav-number">2.3.</span> <span class="nav-text">NCE简化计算并建模条件概率</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE为什么能估计参数"><span class="nav-number">2.3.1.</span> <span class="nav-text">NCE为什么能估计参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE为什么能简化计算"><span class="nav-number">2.3.2.</span> <span class="nav-text">NCE为什么能简化计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NCE建模了条件概率"><span class="nav-number">2.3.3.</span> <span class="nav-text">NCE建模了条件概率</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负采样建模了点互信息-PMI"><span class="nav-number">2.4.</span> <span class="nav-text">负采样建模了点互信息(PMI)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#论文佐证"><span class="nav-number">2.4.1.</span> <span class="nav-text">论文佐证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后的疑问"><span class="nav-number">3.</span> <span class="nav-text">最后的疑问</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#从loss出发"><span class="nav-number">3.1.</span> <span class="nav-text">从loss出发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一条不一样的道路"><span class="nav-number">3.2.</span> <span class="nav-text">一条不一样的道路</span></a></li></ol></li></ol></div>
             
 
           </div>
