@@ -89,7 +89,8 @@
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/levy.PNG">
-<meta property="og:updated_time" content="2019-07-27T07:58:19.580Z">
+<meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/嵌入方案.png">
+<meta property="og:updated_time" content="2019-07-27T20:28:03.628Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量故事搬砖">
 <meta name="twitter:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。">
@@ -487,7 +488,14 @@ T_{1}&=\frac{1\pm{O(\epsilon_{z})}}{Z^{2}}\mathbb{E}_{k\backsim p(w_{k})}\left[\
 <p>首先我们宣称随机变量$x:=(u_{j}^{out}+u_{i}^{out})*\hat{v}_{k}$近似服从正态分布！这个宣称可是一个很大胆的宣布，需要很多的思考和证明；然后利用著名的微积分习题：</p>
 <script type="math/tex; mode=display">
 \mathbb{E}_{x\backsim\cal{N}(0,\sigma^{2})}[\exp(x)]=\exp\left(\frac{\sigma^{2}}{2}\right)</script><p>来消去$\hat{v}_{k}$。因为在$x$所服从的正态分布中，那个$\sigma$只和$u_{j}^{out},u_{i}^{out}$有关而和$\hat{v}_{k}$无关。所以接下来我需要说明，为什么$x$近似服从正态分布，需要什么条件才能近似服从正态分布，以及相应的严格证明。</p>
-<h3 id="为什么内积服从正态分布"><a href="#为什么内积服从正态分布" class="headerlink" title="为什么内积服从正态分布"></a>为什么内积服从正态分布</h3><h3 id="什么时候内积服从正态分布"><a href="#什么时候内积服从正态分布" class="headerlink" title="什么时候内积服从正态分布"></a>什么时候内积服从正态分布</h3><h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="中央lemma的证明"><a href="#中央lemma的证明" class="headerlink" title="中央lemma的证明"></a>中央lemma的证明</h2><h3 id="中央lemma的辅助lemma"><a href="#中央lemma的辅助lemma" class="headerlink" title="中央lemma的辅助lemma"></a>中央lemma的辅助lemma</h3><h3 id="辅助lemma证明中央lemma"><a href="#辅助lemma证明中央lemma" class="headerlink" title="辅助lemma证明中央lemma"></a>辅助lemma证明中央lemma</h3>
+<h3 id="为什么内积服从正态分布"><a href="#为什么内积服从正态分布" class="headerlink" title="为什么内积服从正态分布"></a>为什么内积服从正态分布</h3><p>这部分就是照本宣马大佬啦，暂时先不写。</p>
+<h3 id="什么时候内积服从正态分布"><a href="#什么时候内积服从正态分布" class="headerlink" title="什么时候内积服从正态分布"></a>什么时候内积服从正态分布</h3><p>前面提到，我们需要$\hat{v}_{k}$在球面上服从均匀分布，那我们就得问一个问题：这能办得到么？有很多因素暗示我们这一点办不到。比如，原始的单词$k\backsim p(w_{k})$可不是服从均匀分布的，为什么我们就能期望该单词的嵌入$\hat{v}_{k}$就是球面上的均匀分布呢？下面这个例子很有启发性，它暗示了这个问题能不能办到，应该怎么办到。</p>
+<p><img src="/assets/2019-06-30-词向量理论搬砖/嵌入方案.png" alt="嵌入方案"></p>
+<p>如图所示，我们做一个实验来讨论上面这个问题。假设实验中有4个按钮A，B，C，D。我的左手会以不同的概率去按这些按钮：</p>
+<script type="math/tex; mode=display">
+p(A)=\frac{1}{2},\ p(B)=p(C)=p(D)=\frac{1}{6}</script><p>然后我还有右手来接线：将这4个按钮分别连接到两个灯泡上，一个按钮只连一个灯泡，按到哪个按钮，该按钮对应连接的灯泡就会亮。我们规定两个灯泡各自有一个编号，比如1号灯泡和2号灯泡。接着我们就可以说，连线的过程就是对4个按钮进行“嵌入”的过程：如果按钮A连上了1号灯泡，就称A的“嵌入”是1；如果按钮B连了2号灯泡，就称B的”嵌入“是2。各种不同的连接方案就对应了不同的”词嵌入“算法。灯泡集合$\{1,2\}$就是”嵌入“空间。最后我的眼睛观察每次按过一个按钮，哪个灯泡会亮（在我看不到左手到底按了哪个按钮的情况下）。</p>
+<p>显然每次按一个按钮就对应一次在嵌入空间中的采样。依照方案一，观察者会相信这个空间中的随机变量”点亮的灯的序号k“服从”均匀分布“，<em>i.e.</em> $P(k=1)=P(k=2)=0.5$；依照方案二，观察者会认为$k$服从某种二项分布。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="中央lemma的证明"><a href="#中央lemma的证明" class="headerlink" title="中央lemma的证明"></a>中央lemma的证明</h2><h3 id="中央lemma的辅助lemma"><a href="#中央lemma的辅助lemma" class="headerlink" title="中央lemma的辅助lemma"></a>中央lemma的辅助lemma</h3><h3 id="辅助lemma证明中央lemma"><a href="#辅助lemma证明中央lemma" class="headerlink" title="辅助lemma证明中央lemma"></a>辅助lemma证明中央lemma</h3>
       
     </div>
     
