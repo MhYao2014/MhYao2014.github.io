@@ -90,7 +90,7 @@
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/WordWindow-1561956713995.PNG">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/levy.PNG">
 <meta property="og:image" content="http://yoursite.com/assets/2019-06-30-词向量理论搬砖/嵌入方案.png">
-<meta property="og:updated_time" content="2019-07-29T07:50:15.050Z">
+<meta property="og:updated_time" content="2019-07-29T10:13:25.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="词向量故事搬砖">
 <meta name="twitter:description" content="这是一篇充分暴露菜鸟水平低的博客。搬运一下好多人的理论。写了一坨屎。">
@@ -469,12 +469,12 @@ p(w_{i},w_{j})&=\sum\limits_{k\backsim p(w_{k})}p(w_{k})p(w_{i},w_{j}|w_{k})=\ma
 &=\mathbb{E}_{k\backsim p(w_{k})}\left[\frac{\exp(u_{j}^{out}*v_{k}^{in})}{Z_{k}}*\frac{\exp(u_{i}^{out}*v_{k}^{in})}{Z_{k}}\right]
 \end{array}</script><p>上面的公式就对应了马大佬的公式（7.2.6），神似神似。上式每一步我都是很小心的在变换，保证有理有据，符合skip-gram和负采样模型本身的定义。首先第一步可以粗浅的理解为全概率公式，但是我还是得啰嗦两句，这个全概率公式用得很贴合模型；第二步就是数学期望的定义；第三步用了独立假设，这个独立假设也是符合skip-gram本身的实际做法的。后面就是代入定义而已。另外，这里用的独立性假设可以陈述为：</p>
 <script type="math/tex; mode=display">
-\forall w_{k},\ p(w_i,w_{j}|w_{k})=p(w_i|w_{k})*p(w_{j}|w_{k})</script><p>但是这绝不意味着我们假设了$p(w_{i},w_{j})=p(w_{i})*p(w_{j})$。这一点你可以自行检查。下面为了将配分函数拿到期望外面，我们插播马大佬的“中央lemma”。这条lemma的意思是对于绝大多数的中心词$v_{k}^{in}$而言，其对应的拿个配分函数的值都落在一个固定值$Z$附近。这条lemma定量的给出了这个情况不成立的概率。</p>
-<h3 id="插播马大佬整出来的有用lemma"><a href="#插播马大佬整出来的有用lemma" class="headerlink" title="插播马大佬整出来的有用lemma"></a>插播马大佬整出来的有用lemma</h3><p><em>若out向量满足$u_{i}^{out}=s_{i}\times\hat{u}_{i}^{out}​$，其中$s_{i}​$是一个随机变量，决定了该向量的模长，$\hat{u}_{i}^{out}​$是一个单位模长的随机向量，服从球状高斯分布；in向量满足单位模长，且在嵌入空间上服从均匀分布，i.e. $\hat{v}_{k}:=\frac{v_{k}^{in}}{|v_{k}^{in}|_{2}}\backsim\cal{C}​$；那么对于大部分in向量$\hat{v}_{k}​$其对应的配分函数$Z_{k}​$都会以很大的概率满足</em></p>
+\forall w_{k},\ p(w_i,w_{j}|w_{k})=p(w_i|w_{k})*p(w_{j}|w_{k})</script><p>但是这绝不意味着我们假设了$p(w_{i},w_{j})=p(w_{i})*p(w_{j})​$。这一点你可以自行检查。下面为了将配分函数拿到期望外面，我们插播马大佬的“中央lemma”。这条lemma的意思是对于绝大多数的中心词$v_{k}^{in}​$而言，其对应的拿个配分函数的值都落在一个固定值$Z​$附近。这条lemma定量的给出了这个情况不成立的概率。</p>
+<h3 id="插播马大佬整出来的有用lemma"><a href="#插播马大佬整出来的有用lemma" class="headerlink" title="插播马大佬整出来的有用lemma"></a>插播马大佬整出来的有用lemma</h3><p><em>若out向量满足$u_{i}^{out}=s_{i}\times\hat{u}_{i}^{out}$，其中$s_{i}$是一个随机变量，决定了该向量的模长，$\hat{u}_{i}^{out}$是一个单位模长的随机向量，服从球状高斯分布；in向量满足单位模长，且在单位球面$\cal{D}$上服从均匀分布，$\hat{v}_{k}:=\frac{v_{k}^{in}}{|v_{k}^{in}|_{2}}\backsim U(\cal{D})$。那么对于大部分in向量$\hat{v}_{k}$其对应的配分函数$Z_{k}$都会以很大的概率满足</em></p>
 <script type="math/tex; mode=display">
-\Pr_{\hat{v}_{k}\backsim\cal{C}}\left[(1-\epsilon_{z})Z\leq Z_{k}\leq(1+\epsilon_{z})Z\right]\geq1-\delta,</script><p><em>其中$\epsilon_{z}=\hat{O}(1/\sqrt{n})$，并且$\delta=\exp(-\Omega(\log^{2}{n}))​$，n为词表长度。</em></p>
+\Pr_{\hat{v}_{k}\backsim\cal{C}}\left[(1-\epsilon_{z})Z\leq Z_{k}\leq(1+\epsilon_{z})Z\right]\geq1-\delta,</script><p><em>其中$\epsilon_{z}=\hat{O}(1/\sqrt{n})​$，并且$\delta=\exp(-\Omega(\log^{2}{n}))​$，n为词表长度。</em></p>
 <p> 注意到词表长度$n​$是一个很大的数字（比如九百万这种），所以$\epsilon_{z}​$和$\delta​$都很小：前者意味着$Z_{k}​$分布的很集中；后者意味着这种情况的概率很大。这条lemma的证明可以看这篇博文的附录，证明中的各种concentration技巧轮番登场。</p>
-<p>现在，为了保证思路的流畅性，我们暂且接受这个结论，那么我们就能够进一步计算公式(31)。具体而言，我们首先将$P_{m}(i;k)$的能量函数的定义修改为：$P_{m}(i;k)\propto\exp(u_{i}^{out}*\hat{v}_{k})$，并且其中中心词in向量$\hat{v}_{k}:=\frac{v_{k}^{in}}{|v_{k}^{in}|_{2}}$。代入公式前，我们强调一下关于中心词的两个分布：中心词$k$本身在语料中出现的概率$k\backsim p(w_{k})$，以及中心词$k$对应的in向量$\hat{v}_{k}$在嵌入空间中服从均匀分布$\hat{v}_{k}\backsim\cal{C}$。这两个分布既不冲突，也没直接关系，但是我们不应当搞混它们。(No，这里是我搞错了。这两个分布的关系很重要，决定了积分最后到底等于啥)</p>
+<p>现在，为了保证思路的流畅性，我们暂且接受这个结论，那么我们就能够进一步计算公式(31)。具体而言，我们首先将$P_{m}(i;k)$的能量函数的定义修改为：$P_{m}(i;k)\propto\exp(u_{i}^{out}*\hat{v}_{k})$，并且其中中心词in向量$\hat{v}_{k}:=\frac{v_{k}^{in}}{|v_{k}^{in}|_{2}}$。代入公式前，我们强调一下关于中心词的两个分布：中心词$k$本身在语料中出现的概率$k\backsim p(w_{k})$，以及中心词$k$对应的in向量$\hat{v}_{k}$在嵌入空间$\cal{D}$中服从均匀分布$\hat{v}_{k}\backsim U(\cal{D})$。这两个分布的关系很重要，决定了积分最后到底等于啥。</p>
 <p>显然只有$Z_{k}​$满足中央lemma描述的集中现象时，我们才能将之视为一个常数，所以我们将这个事件定义为$\cal{F}​$。那么规定$\mathbf{1}_{\cal{F}}​$表示事件$\cal{F}​$发生，$\mathbf{1}_{\cal{\bar{F}}}​$表示未发生。将这些符号代入公式(31)：</p>
 <script type="math/tex; mode=display">
 \begin{array}{r@~l}
@@ -487,19 +487,31 @@ T_{1}&=\frac{1\pm{O(\epsilon_{z})}}{Z^{2}}\mathbb{E}_{k\backsim p(w_{k})}\left[\
 \end{array}</script><p>下面就是最牛逼的一步了：通过积分消去$\hat{v}_{k}​$。</p>
 <p>首先我们宣称随机变量$x:=(u_{j}^{out}+u_{i}^{out})*\hat{v}_{k}$近似服从正态分布！这个宣称可是一个很大胆的宣布，需要很多的思考和证明；然后利用著名的微积分习题：</p>
 <script type="math/tex; mode=display">
-\mathbb{E}_{x\backsim\cal{N}(0,\sigma^{2})}[\exp(x)]=\exp\left(\frac{\sigma^{2}}{2}\right)</script><p>来消去$\hat{v}_{k}$。因为在$x$所服从的正态分布中，那个$\sigma$只和$u_{j}^{out},u_{i}^{out}$有关而和$\hat{v}_{k}$无关。所以接下来我需要说明，为什么$x$近似服从正态分布，需要什么条件才能近似服从正态分布，以及相应的严格证明。</p>
-<h3 id="为什么内积服从正态分布"><a href="#为什么内积服从正态分布" class="headerlink" title="为什么内积服从正态分布"></a>为什么内积服从正态分布</h3><p>这部分就是照本宣马大佬啦，暂时先不写。</p>
+\mathbb{E}_{x\backsim\cal{N}(0,\sigma^{2})}[\exp(x)]=\exp\left(\frac{\sigma^{2}}{2}\right)</script><p>来消去$\hat{v}_{k}​$。因为在$x​$所服从的正态分布中，那个$\sigma​$只和$u_{j}^{out},u_{i}^{out}​$有关而和$\hat{v}_{k}​$无关。所以接下来我需要说明，为什么$x​$近似服从正态分布，需要什么条件才能近似服从正态分布，以及相应的严格证明。为了更加清晰的展现思路，我把下面两节内容的关系浓缩在一串等式中：</p>
+<script type="math/tex; mode=display">
+\begin{array}{r@~l}
+\mathbb{E}_{k\backsim p(w_{k})}\left[\exp\left(u_{sum}^{out}*\hat{v}_{k}\right)\right]&\overset{def}{=}\sum\limits_{k=1}^{n}p(w_{k})*\exp(u_{sum}^{out}*\hat{v}_{k})\\
+&\overset{???}{=}\int_{\cal{D}}pdf(\hat{v})*\exp(u_{sum}^{out}*\hat{v})d\hat{v}\\
+&\overset{def}{=}\mathbb{E}_{\hat{v}\backsim pdf(\hat{v})}[\exp(u_{sum}^{out}*\hat{v})]\\
+&\overset{马}{=}\mathbb{E}_{x\backsim\cal{N}(0,\sigma^2)}[\exp(x)],\ where\ x=u_{sum}^{out}*\hat{v}
+\end{array}</script><h3 id="为什么内积服从正态分布"><a href="#为什么内积服从正态分布" class="headerlink" title="为什么内积服从正态分布"></a>为什么内积服从正态分布</h3><p>这部分就是照本宣马大佬啦，暂时先不写。</p>
 <h3 id="什么时候内积服从正态分布"><a href="#什么时候内积服从正态分布" class="headerlink" title="什么时候内积服从正态分布"></a>什么时候内积服从正态分布</h3><p>前面提到，我们需要$\hat{v}_{k}$在球面上服从均匀分布，那我们就得问一个问题：这能办得到么？有很多因素暗示我们这一点办不到。比如，原始的单词$k\backsim p(w_{k})$可不是服从均匀分布的，为什么我们就能期望该单词的嵌入$\hat{v}_{k}​$就是球面上的均匀分布呢？下面这个例子很有启发性，它暗示了这个问题能不能办到，应该怎么办到。</p>
 <p><img src="/assets/2019-06-30-词向量理论搬砖/嵌入方案.png" alt="嵌入方案"></p>
 <p>如图所示，我们做一个实验来讨论上面这个问题。假设实验中有4个按钮A，B，C，D。我的左手会以不同的概率去按这些按钮：</p>
 <script type="math/tex; mode=display">
-p(A)=\frac{1}{2},\ p(B)=p(C)=p(D)=\frac{1}{6}</script><p>然后我还有右手来接线：将这4个按钮分别连接到两个灯泡上，一个按钮只连一个灯泡，按到哪个按钮，该按钮对应连接的灯泡就会亮。我们规定两个灯泡各自有一个编号，比如1号灯泡和2号灯泡。接着我们就可以说，连线的过程就是对4个按钮进行“嵌入”的过程：如果按钮A连上了1号灯泡，就称A的“嵌入”是1；如果按钮B连了2号灯泡，就称B的”嵌入“是2。各种不同的连接方案就对应了不同的”词嵌入“算法。灯泡集合$\{1,2\}$就是”嵌入“空间。最后我的眼睛观察每次按过一个按钮，哪个灯泡会亮（在我看不到左手到底按了哪个按钮和具体的连接方案的情况下）。</p>
+p(A)=\frac{1}{2},\ p(B)=p(C)=p(D)=\frac{1}{6}</script><p>然后我还有右手来接线：将这4个按钮分别连接到两个灯泡上，一个按钮只连一个灯泡，按到哪个按钮，该按钮对应连接的灯泡就会亮。我们规定两个灯泡各自有一个编号，比如1号灯泡和2号灯泡。接着我们就可以说，连线的过程就是对4个按钮进行“嵌入”的过程：如果按钮A连上了1号灯泡，就称A的“嵌入”是1；如果按钮B连了2号灯泡，就称B的”嵌入“是2。各种不同的连接方案就对应了不同的”词嵌入“算法。灯泡集合$\{1,2\}​$就是”嵌入“空间。最后我的眼睛观察每次按过一个按钮，哪个灯泡会亮（在我看不到左手到底按了哪个按钮和具体的连接方案的情况下）。</p>
 <p>显然每次按一个按钮就对应一次在嵌入空间中的采样。依照方案一，观察者会相信这个空间中的随机变量”点亮的灯的序号k“服从”均匀分布“，<em>i.e.</em> $P(k=1)=P(k=2)=0.5​$；依照方案二，观察者会认为$k​$服从某种二项分布。所以这个例子告诉我们：1）离散情况下有可能可以办到我们的要求；2）且嵌入的方案决定了如何办到均匀分布的要求；3）最后嵌入的支撑集空间要远小于原始分布的支撑集空间。那么除了这种离散的toy example，在真实的词嵌入语境下，我们还能办到么？对应的数学问题该如何抽象？我觉得可以这样抽象这个问题：</p>
-<p>假设离散随机变量$X$有$n$个不同的取值，并且$X\backsim P(X)$，而后将它代入嵌入函数$f$后得到新的随机变量$Y=f(X)\in\mathbb{R}^{d}$，试寻找最佳的嵌入函数$f^{*}$，使得$Y$尽可能的服从我们需要的分布$P(Y)$。用数学语言描述就是：</p>
+<p>假设离散随机变量$X$有$n$个不同的取值，并且$X\backsim P(X)$，而后将它代入嵌入函数$f$后得到新的随机变量$Y=f(X)\in\mathbb{R}^{d}$，接着我们把$Y$的支撑集均匀分为$d$等份（自然是按照支撑集上的自然测度），分别在这$d$等份上对$Y$所服从的分布做积分得到离散分布$P(\bar{Y})$，试寻找最佳的嵌入函数$f^{*}$，使得$P(\bar{Y})​$尽可能是均匀分布。用数学语言描述就是：</p>
 <script type="math/tex; mode=display">
 \begin{array}{r@~l}
-\arg\min\limits_{f}
-\end{array}</script><h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="中央lemma的证明"><a href="#中央lemma的证明" class="headerlink" title="中央lemma的证明"></a>中央lemma的证明</h2><h3 id="中央lemma的辅助lemma"><a href="#中央lemma的辅助lemma" class="headerlink" title="中央lemma的辅助lemma"></a>中央lemma的辅助lemma</h3><h3 id="辅助lemma证明中央lemma"><a href="#辅助lemma证明中央lemma" class="headerlink" title="辅助lemma证明中央lemma"></a>辅助lemma证明中央lemma</h3>
+\arg\min\limits_{f}&KL\left(P(\bar{Y}_{k})\|\frac{1}{d}\right)=\sum_{k=1}^{d}P(\bar{Y}_{k})\log(d*P(\bar{Y}_{k}))\\
+s.t.& P(\bar{Y}_{k})=\sum_{i_{k}=1}^{I_{k}}P(X_{i_{k}}),\\
+&f(X_{i_{k}})\in\cal{D}_{k},\\
+&\cup_{k=1}^{d}\cal{D}_{k}=\cal{D},\\
+&\forall i\neq j,\ \cal{D}_{i}\cap\cal{D}_{j}=\phi,\\
+&|\cal{D}_{1}|=\cdots=|\cal{D}_{d}|,
+\end{array}</script><p>我们上面唯一关心的问题是希望嵌入后的均匀分布使得下面的一系列等式成立：</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="中央lemma的证明"><a href="#中央lemma的证明" class="headerlink" title="中央lemma的证明"></a>中央lemma的证明</h2><h3 id="中央lemma的辅助lemma"><a href="#中央lemma的辅助lemma" class="headerlink" title="中央lemma的辅助lemma"></a>中央lemma的辅助lemma</h3><h3 id="辅助lemma证明中央lemma"><a href="#辅助lemma证明中央lemma" class="headerlink" title="辅助lemma证明中央lemma"></a>辅助lemma证明中央lemma</h3>
       
     </div>
     
