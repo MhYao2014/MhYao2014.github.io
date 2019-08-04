@@ -249,7 +249,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/Analysis/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/05/BabeRealAnalysis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Minghong Yao">
@@ -268,7 +268,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/08/05/Analysis/" itemprop="url">BaBe Real Analysis</a></h1>
+                <a class="post-title-link" href="/2019/08/05/BabeRealAnalysis/" itemprop="url">BaBe Real Analysis</a></h1>
         
 
         <div class="post-meta">
@@ -319,32 +319,14 @@
 
       
         
-          
-            <p>研一断断续续把一些基本的分析的概念翻来覆去的熟悉了一些，总结起来就是H.L.Royden写的实分析（第三版）里面的第2章的全部内容，加上一点点粗浅的泛函的概念（变分的部分都没涉及到）。近来遇到颇多概率论（最优传输距离等），打算再单独看看测度论（工科生学的概率论就不放到博客上了，反正也是用到了就会翻翻）。</p>
-<h1 id="勒贝格测度"><a href="#勒贝格测度" class="headerlink" title="勒贝格测度"></a>勒贝格测度</h1><p>理想情况下，我们希望测度满足4个性质：</p>
-<ul>
-<li>对于实数集的每个子集，测度都有定义。就是说测度的定义域是实数集的幂集（power set）；</li>
-<li>对于区间$I$，希望它的测度就是它的长度（测度才有现实中的对应）；</li>
-<li>不相交集合的并集的测度等于它们各自测度的加和；</li>
-<li>测度是平移不变的（比如相同长度的区间移动一下，测出来还是原来的长度）</li>
-</ul>
-<p>但是后面会证明上面4条不可能全部满足，有一种办法是把第一条（相比而言，后面三条更加实用，得保留）减弱为测度在尽可能多的集合上有定义。这就引出了$\sigma$代数的定义：一种尽可能包括全集的子集的集合簇，但又不是大到如幂集一般无所不包。然后测度就定义在$\sigma$代数上。$\sigma$代数名字本身可以拆成两部分看“\sigma”和“代数”：“\sigma”表示求和，所以会牵扯到可数个集合；“代数”表示代数性质，所以会牵扯到对集合运算的封闭性。具体的定义自行百度。由此又可以给出Borel集的定义：包含所有开集的最小的那个$\sigma$代数。</p>
-<p>为了一步一步的发展出良好定义的测度，首先学习“外测度”。</p>
-<h2 id="外测度（用时30min）"><a href="#外测度（用时30min）" class="headerlink" title="外测度（用时30min）"></a>外测度（用时30min）</h2><p>对于任意一个实数集$A$，可以考虑它的可数开区间簇覆盖（可数开覆盖）$\{I_{n}\}$。考虑这些开区间的长度$l(I_{n})$的加和（由于每个区间长度为正数，所以这个级数唯一且和加和的顺序无关）。$\{I_{n}\}$可能有无数种方案，对应了无数个加和。外测度就是这些加和的下确界：</p>
-<script type="math/tex; mode=display">
-m^{*}A=\inf\limits_{A\subset\cup I_{n}}\sum l(I_{n})</script><ul>
-<li>空集，单点集，可数集的外测度都是0；</li>
-<li>外测度满足前面4条性质中的第二条（书中的一个证明，我就不抄了）；</li>
-<li>外测度满足可数次加性；</li>
-<li>任意实数集$A$都能被一个开集$O$稍稍盖住，以至于$O$的外测度比$A$的外测度不会多出$\epsilon$。</li>
-</ul>
-<h3 id="习题（用时20min）"><a href="#习题（用时20min）" class="headerlink" title="习题（用时20min）"></a>习题（用时20min）</h3><p>只记录一条有意思的习题：令$A=\mathbb{Q}\bigcap[0,1]$（这个集合的外测度为零，因为它可数），令$\{I_{n}\}$为任何一个<strong>有限</strong>开区间簇（只有有限个开区间），并且$\{I_{n}\}$覆盖了$A$。那么$\sum I_{n}\geq1$。</p>
-<p>这条习题有意思的地方就在于$A$的外测度明明为0，但某些开覆盖的对应的长度加和的下确界却是1，这中间矛盾么？我觉得这个习题这样出就是为了让我们意识到这种对比。当然是不矛盾的，题目中加粗的“有限”可以解释这种“矛盾”。如果想要用有限个开区间就盖住0到1间所有的有理数，那这些开区间的总体长度和就会变得很长（大于等于1）；如果放宽条件，允许用无限多个开区间去盖住$A$，那就可以每个有理数都给一个长度无限逼近于0的开区间盖住，并且最后总体长度和可以为0。看了网上的一个证明，觉得这种证明方法没啥意思，在这里写一下：</p>
-<script type="math/tex; mode=display">
-1=m^{*}[0,1]=m^{*}\overline{A}\leq m^{*}(\overline{\cup I_{n}})=m^{*}({\cup \overline{I_{n}}})\leq \sum m^{*}\overline{I_{n}}=\sum l(I_{n})</script><p>上面最后一步跳了一下，并且$\overline{A}$表示$A$的闭包，而$A$的闭包就是闭区间$[0,1]$。$\overline{I_{n}}$也是闭包的意思。上面这个证明没有灵魂。待我想一个出来。</p>
-<p>写这个博客写了1个小时，妈的。</p>
-
-          
+          <p>读书笔记</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/08/05/BabeRealAnalysis/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
