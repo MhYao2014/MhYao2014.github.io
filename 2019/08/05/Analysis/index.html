@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="读书笔记">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-04T19:28:17.010Z">
+<meta property="og:updated_time" content="2019-08-15T21:15:54.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BaBe Real Analysis">
 <meta name="twitter:description" content="读书笔记">
@@ -345,6 +345,8 @@ m^{*}A=\inf\limits_{A\subset\cup I_{n}}\sum l(I_{n})</script><ul>
 <script type="math/tex; mode=display">
 1=m^{*}[0,1]=m^{*}\overline{A}\leq m^{*}(\overline{\cup I_{n}})=m^{*}({\cup \overline{I_{n}}})\leq \sum m^{*}\overline{I_{n}}=\sum l(I_{n})</script><p>上面最后一步跳了一下，并且$\overline{A}$表示$A$的闭包，而$A$的闭包就是闭区间$[0,1]$。$\overline{I_{n}}$也是闭包的意思。上面这个证明没有灵魂。待我想一个出来。</p>
 <p>写这个博客写了1个小时，妈的。</p>
+<h2 id="可测集与勒贝格测度（30min）"><a href="#可测集与勒贝格测度（30min）" class="headerlink" title="可测集与勒贝格测度（30min）"></a>可测集与勒贝格测度（30min）</h2><p>因为外测度在定义时是对任意一个集合进行描述的，所以任何一个集合都有外测度。但是正如一开始所讲，测度不能做到对所有集合都有定义（不是无所不包），所以外测度只能有可数次加性。如果想要让测度保证可数加性，那么我们需要对可测集在外测度的基础上适当筛选、缩减。这个筛选的标准可以是卡拉泰奥多里给出的定义：</p>
+<p>一个集合$E​$称为可测的，如果对于每个集合$A​$都有$m^{<em>}A=m^{</em>}(A\bigcap E)+m^{*}(A\bigcap\hat{E})​$。其中$\hat{E}​$表示$E​$的补集。</p>
 
       
     </div>
@@ -524,7 +526,7 @@ m^{*}A=\inf\limits_{A\subset\cup I_{n}}\sum l(I_{n})</script><ul>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#勒贝格测度"><span class="nav-number">1.</span> <span class="nav-text">勒贝格测度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#外测度（用时30min）"><span class="nav-number">1.1.</span> <span class="nav-text">外测度（用时30min）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#习题（用时20min）"><span class="nav-number">1.1.1.</span> <span class="nav-text">习题（用时20min）</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#勒贝格测度"><span class="nav-number">1.</span> <span class="nav-text">勒贝格测度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#外测度（用时30min）"><span class="nav-number">1.1.</span> <span class="nav-text">外测度（用时30min）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#习题（用时20min）"><span class="nav-number">1.1.1.</span> <span class="nav-text">习题（用时20min）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可测集与勒贝格测度（30min）"><span class="nav-number">1.2.</span> <span class="nav-text">可测集与勒贝格测度（30min）</span></a></li></ol></li></ol></div>
             
 
           </div>
