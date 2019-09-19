@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="两颗玻璃球测临界高度问题问题描述台阶的高度差序列可以用一个数组来描述  h_{1},h_{2},\cdots,h_{i},\cdots,h_{N},$N$表示台阶总的数量，且$h_{i}&amp;lt;h_{i+1}$。设玻璃球能够承受的高度差为$x$。玻璃球在某一个台阶实验一次就等价于$x$与对应的$h_{i}$比较了一次大小。如果$x&amp;lt;h_{i}$，则玻璃球就会破裂。假设总共有两个一模一样的玻璃">
+<meta name="keywords" content="面试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="两颗玻璃球测临界高度问题">
+<meta property="og:url" content="http://yoursite.com/2019/09/19/两颗玻璃球测临界高度问题/index.html">
+<meta property="og:site_name" content="MHYao2014">
+<meta property="og:description" content="两颗玻璃球测临界高度问题问题描述台阶的高度差序列可以用一个数组来描述  h_{1},h_{2},\cdots,h_{i},\cdots,h_{N},$N$表示台阶总的数量，且$h_{i}&amp;lt;h_{i+1}$。设玻璃球能够承受的高度差为$x$。玻璃球在某一个台阶实验一次就等价于$x$与对应的$h_{i}$比较了一次大小。如果$x&amp;lt;h_{i}$，则玻璃球就会破裂。假设总共有两个一模一样的玻璃">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-09-19T01:44:15.340Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="两颗玻璃球测临界高度问题">
+<meta name="twitter:description" content="两颗玻璃球测临界高度问题问题描述台阶的高度差序列可以用一个数组来描述  h_{1},h_{2},\cdots,h_{i},\cdots,h_{N},$N$表示台阶总的数量，且$h_{i}&amp;lt;h_{i+1}$。设玻璃球能够承受的高度差为$x$。玻璃球在某一个台阶实验一次就等价于$x$与对应的$h_{i}$比较了一次大小。如果$x&amp;lt;h_{i}$，则玻璃球就会破裂。假设总共有两个一模一样的玻璃">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/19/两颗玻璃球测临界高度问题/">
+
+
+
+
+
+  <title>两颗玻璃球测临界高度问题 | MHYao2014</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">MHYao2014</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+            About
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/19/两颗玻璃球测临界高度问题/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Minghong Yao">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="MHYao2014">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">两颗玻璃球测临界高度问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-19T09:34:17+08:00">
+                2019-09-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="两颗玻璃球测临界高度问题"><a href="#两颗玻璃球测临界高度问题" class="headerlink" title="两颗玻璃球测临界高度问题"></a>两颗玻璃球测临界高度问题</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>台阶的高度差序列可以用一个数组来描述</p>
+<script type="math/tex; mode=display">
+h_{1},h_{2},\cdots,h_{i},\cdots,h_{N},</script><p>$N$表示台阶总的数量，且$h_{i}&lt;h_{i+1}$。设玻璃球能够承受的高度差为$x$。玻璃球在某一个台阶实验一次就等价于$x$与对应的$h_{i}$比较了一次大小。如果$x&lt;h_{i}$，则玻璃球就会破裂。假设总共有两个一模一样的玻璃球，请设计最优策略找到临界台阶（假设一定存在临界台阶）。</p>
+<h2 id="最优策略"><a href="#最优策略" class="headerlink" title="最优策略"></a>最优策略</h2><p>以$N=100$为例，则最优策略分为两步：</p>
+<ul>
+<li><p>让$x$同以下序列依次比较，直到第一颗玻璃球破裂：</p>
+<script type="math/tex; mode=display">
+h_{a}^{1},h_{a+(a-1)}^{2},\cdots,h_{\sum_{i=1}^{j}(a-i+1)}^{j},\cdots,h^{K}_{\sum_{i=1}^{K}(a-i+1)},</script><p>其中，$a=14$。且$K=11,\sum_{i=1}^{K}(a-i+1)=99$。添加最后一项后，上述序列直观表示为:</p>
+<script type="math/tex; mode=display">
+h_{14},h_{27},\cdots,h_{95},h_{99},h_{100}.</script><p>若玻璃球在$h_{100}$处破裂，那么临界台阶就是最后一个台阶；否则转步骤二。(称之为试错阶段)</p>
+</li>
+<li><p>不妨设第一颗玻璃球在$h_{\sum_{i=1}^{j}(a-i+1)}^{j}$处破裂。那么就利用第二颗玻璃球从$h_{1+\sum_{i=1}^{j-1}(a-i+1)}^{j-1}$ 处开始，按照原始台阶的顺序依次向后试验，直到找到临界台阶。(称之为线性扫描阶段)</p>
+</li>
+</ul>
+<h2 id="最优性证明"><a href="#最优性证明" class="headerlink" title="最优性证明"></a>最优性证明</h2><p>必须承认，对于一般的$N$，我还没有找到确定$a$的确切办法。但是在$N=100$的情况下，能够明确证明上述$a=14$的两阶段策略，是最坏情况下比较次数最小的最优策略。证明分为3步。第一步证明最优策略一定是上述两阶段策略的形式，特别是第二阶段一定为线性扫描阶段；第二步找到一个次优解，用以帮助第三步证明中排除掉一些明显不可能的策略，使得剩下可能的策略为有限多个；第三步通过枚举法证明$a=14$是最优的策略。</p>
+<h3 id="Step-1"><a href="#Step-1" class="headerlink" title="Step 1"></a>Step 1</h3><p>所有的策略都可以抽象为两个序列。具体而言，第一个序列是第一颗玻璃球同台阶的比较序列，第二个序列是第二颗玻璃球同台阶的比较序列。Step 1断言第二颗玻璃球的比较序列一定是连续的台阶。若不然，那就意味着第二颗玻璃球的比较序列中存在跳跃比较的情况。基于此，总可以构造这样的最坏情况，使得被跳跃过的台阶为临界台阶。此时因为第二颗玻璃球在临界台阶之后的台阶上试验过，从而破碎掉，导致算法再也没有办法真正找到临界台阶，从而可以认为实验次数为无穷大。这显然不可能是最优策略。所以最优策略的第二个比较序列一定是线性扫描的形式。</p>
+<h3 id="Step-2"><a href="#Step-2" class="headerlink" title="Step 2"></a>Step 2</h3><p>基于Step 1的结论，我们只需要讨论策略的第一个比较序列即可。我们假设第一个比较序列为：</p>
+<script type="math/tex; mode=display">
+h_{n_{1}},h_{n_{2}},\cdots,h_{n_{i-1}},h_{n_{i}}\cdots,h_{n_{K-1}}.</script><p>上述序列是原始台阶高度差序列的一个子序列。我们定义$h_{n_{i}}$和$h_{n_{i-1}}$之间差了$\Delta n_{i}$个台阶，显然</p>
+<script type="math/tex; mode=display">
+\Delta n_{i}=n_{i}-n_{i-1},2\leq i \leq K-1</script><p>那么我们就会有如下的关于$\Delta n_{i}$的序列（规定$\Delta n_{1}=n_{1}-1,\Delta n_{K}=100-n_{K-1},$）</p>
+<script type="math/tex; mode=display">
+\Delta n_{1},\Delta n_{2},\cdots,\Delta n_{i},\cdots,\Delta n_{K}.</script><p>构造上述序列的动机是为了方便讨论待证明的策略的最坏情况比较次数。显然，当应用上述两阶段形式的策略时，线性扫描阶段的试验次数只会是$\{\Delta n_{i}\}$中的某一个（假设就是在$h_{n_{j+1}}$个台阶处，第一颗玻璃球碎掉）。而试错阶段也会有若干次的试验，显然试验次数是$j+1$。那么最坏情况下，试验次数一定满足不等式（可能取得的最大的扫描次数加上可能取得的最大的试错次数）:</p>
+<script type="math/tex; mode=display">
+worst \leq \max\limits_{i=1,\cdots,K}\{\Delta n_{i}\}+K</script><p>一种较为简单的思路是，如果约束$\Delta n_{i}$的最大值尽可能的小，那么$worst$就可能很小。根据鸽舍原理，把$N$个物品分为$K$份，其中一定有一份比$\frac{N}{K}$来得多。所以$\max\limits_{i=1,\cdots,K}\{\Delta n_{i}\}$的最小值就是$\frac{N}{K}$，且此时每一份$\Delta n_{i}$都是$\frac{N}{K}$：这就是说这对应着一个等分的策略。那么显然此时的最坏情况是第一颗玻璃球一直实验到了最后才破碎，然后第二颗玻璃球对最后一份$\Delta n_{K}$做了线性扫描。此时</p>
+<script type="math/tex; mode=display">
+worst = \frac{N}{K} + K</script><p>稍加分析，当$K=\sqrt{N}$时，$worst$取得最小的$2\sqrt{N}$。具体将$N=100$带入，那么我们将台阶序列10等分，并且第一颗玻璃球按照以下序列依次与台阶比较</p>
+<script type="math/tex; mode=display">
+h_{10},h_{20},h_{30},\cdots,h_{90},h_{100}.</script><p>那么最坏情况下，策略需要比较上述序列的10次，再加上$h_{91}$到$h_{99}$的9次试验。共计19次实验。</p>
+<h3 id="Step-3"><a href="#Step-3" class="headerlink" title="Step 3"></a>Step 3</h3><p>上述做法的一个问题是，我们只针对可能取得的最大的扫描次数做了优化，并没有对扫描次数加上试错次数整体做优化。所以改进的思路应当是保证最坏情况下，扫描次数加上试错次数依然比19次来得小。同时Step 2的结果也表明，那些$n_{1}\geq19$的策略都不可能是最优策略。因为有可能它们的第一颗玻璃球在$h_{n_{1}}$处就破裂了，而后线性扫描阶段的次数显然会超过19次，因而不会是最佳策略。</p>
+<p>进一步可以归纳，只有那些符合下述模式的策略才可能成为最佳策略：</p>
+<script type="math/tex; mode=display">
+\begin{equation}
+\Delta n_{i}=\Delta n_{i-1}-1
+\end{equation}</script><p>这是因为当$\Delta n_{i}\geq\Delta n_{i-1}$时，该策略的最坏情况会在最后一次试错的时候发生，且此时累计的试错次数加上线性扫描次数会远远大于$\Delta n_{1}$。而我们可以证明当上述模式被满足时，该策略的最坏情况试验次数就等于$\Delta n_{1}$。当$\Delta n_{i}&lt;\Delta n_{i-1}-1$时，该策略会留下更多的尾项，使得对应的最坏情况下试验次数有可能变大。所以它们不会比符合$\Delta n_{i}=\Delta n_{i-1}-1$的策略来得更好。</p>
+<p>而当$\Delta n_{i}=\Delta n_{i-1}-1$时，无论第一颗玻璃球碎在哪颗$h_{n_{i}}$上，此时线性扫描次数加上试错次数都会等于$\Delta n_{1}$ 。这一点可以通过数学归纳法证明，不再赘述。</p>
+<p>通过上述讨论，我们可以确定还没有排除的策略是有限多个的。这些策略符合两个限制条件：</p>
+<ul>
+<li>$\Delta n_{1}\leq 18$</li>
+<li>$\Delta n_{i}=\Delta n_{i-1}-1$</li>
+</ul>
+<p>所以利用枚举法，理论上可以穷举18种情况，完成证明。对于$N=100$而言，当$a=14$为最佳策略。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>上述证明，虽然不能给出一般$N$情况下，最佳策略的解析解。但是它启发我们可以利用$2\sqrt{N}$作为一个界限，将数量巨大的可能的策略数目缩减为有限多个，而后利用暴力搜索，找到最佳策略。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"># 面试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/05/BabeRealAnalysis/" rel="next" title="BaBe Real Analysis">
+                <i class="fa fa-chevron-left"></i> BaBe Real Analysis
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Minghong Yao</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MhYao2014" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mhyao1@mail.ustc.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#两颗玻璃球测临界高度问题"><span class="nav-number">1.</span> <span class="nav-text">两颗玻璃球测临界高度问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最优策略"><span class="nav-number">1.2.</span> <span class="nav-text">最优策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最优性证明"><span class="nav-number">1.3.</span> <span class="nav-text">最优性证明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">Step 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2"><span class="nav-number">1.3.2.</span> <span class="nav-text">Step 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3"><span class="nav-number">1.3.3.</span> <span class="nav-text">Step 3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.4.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Minghong Yao</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a></div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+</body>
+</html>
