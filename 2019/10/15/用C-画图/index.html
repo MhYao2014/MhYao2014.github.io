@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="MhYao2014, NexT">
+  <meta name="keywords" content="学习,">
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="用C++画图怎么画呢？">
+<meta name="description" content="用C++画图怎么画呢？ 读书笔记。">
+<meta name="keywords" content="学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="用C++画图">
+<meta property="og:title" content="C++ Primer">
 <meta property="og:url" content="http://yoursite.com/2019/10/15/用C-画图/index.html">
 <meta property="og:site_name" content="MHYao2014">
-<meta property="og:description" content="用C++画图怎么画呢？">
+<meta property="og:description" content="用C++画图怎么画呢？ 读书笔记。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-10-14T16:34:29.256Z">
+<meta property="og:updated_time" content="2019-12-13T23:30:16.838Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="用C++画图">
-<meta name="twitter:description" content="用C++画图怎么画呢？">
+<meta name="twitter:title" content="C++ Primer">
+<meta name="twitter:description" content="用C++画图怎么画呢？ 读书笔记。">
 
 
 
@@ -125,7 +126,7 @@
 
 
 
-  <title>用C++画图 | MHYao2014</title>
+  <title>C++ Primer | MHYao2014</title>
   
 
 
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">用C++画图</h1>
+          <h1 class="post-title" itemprop="name headline">C++ Primer</h1>
         
 
         <div class="post-meta">
@@ -320,7 +321,57 @@
 
       
         <p>用C++画图怎么画呢？</p>
+<p>读书笔记。</p>
 <a id="more"></a>
+<h1 id="Chapter-1"><a href="#Chapter-1" class="headerlink" title="Chapter 1"></a>Chapter 1</h1><ul>
+<li><p>main函数的返回值非零时，该非零值indicates系统遇到了什么样子的错误。</p>
+</li>
+<li><p>每个variable都有它的type。</p>
+</li>
+<li><p>suffix就是后缀的意思。</p>
+</li>
+<li><p>compilers决定了suffix conventions (.cc, .cxx, .cpp, .cp, and .C)。</p>
+</li>
+<li><p>cc 是一个C compiler。</p>
+</li>
+<li><p>windows中executables以exe作为suffix；UNIX中则以out作为suffix。</p>
+</li>
+<li><p>windows中执行executables时，可以call the name 并省略.exe。</p>
+</li>
+<li><p>g++是一个GNU compiler。用例：g++ -o prog1 prog1.cc</p>
+</li>
+<li><p>“-o prog1”是用来命名executables的名字的。UNIX中就是规定了.out文件的名字，但是实际看到却又会省略.out这个suffix，而只有prog1。这个参数缺省时，自动命名为a.out。</p>
+</li>
+<li><p>c++没有定义IO (input or output)命令，而是依赖于standard library (标准库)实现IO功能。</p>
+</li>
+<li><p>iostream library有两个type: istream 和ostream。</p>
+</li>
+<li><p>stream 是向设备写入或者读出的sequence of characters。</p>
+</li>
+<li><p>iostream library规定了4个 IO objects。</p>
+<ul>
+<li>type istream: cin (standard input)</li>
+<li>type ostream: cout (standard output)</li>
+<li>type ostream: cerr (standard error)</li>
+<li>type osream: clog</li>
+</ul>
+<p>上述四个object都是和一个窗口window关联的：从窗口读入，输出到窗口中去。</p>
+</li>
+<li><p>&lt;&lt; operator 需要两个operands: left-hand operand需要是一个ostream object；right-hand operand则是一个要输出的值。该operator会返回left-hand operand (一个ostream object)，因而可以接连使用&lt;&lt; operator。</p>
+</li>
+<li><p>”“中出现的字符串叫做string literal。</p>
+</li>
+<li><p>endl叫做manipulator，是一个特殊值。endl可以结束当前line，并flushing相关IO设备的buffer：flushing the buffer保证当前所有的输出内容都确实输出到设备上了，而不是停留在内存中等待输出。</p>
+</li>
+<li><p>所以debug的时候，如果使用了print statements，<strong>一定要flush the stream</strong>，否则程序crash时，输出信息可能会停留在内存中，而没有输出到屏幕上 (这个问题我确实遇到过)。</p>
+</li>
+<li><p>::叫做scope operator。</p>
+</li>
+<li><p>“&gt;&gt;” operator返回left-hand operand。</p>
+</li>
+<li><p>”注释“这个概念对应的英文术语叫做comments。约定俗成，相比于文档，comments更加值得信赖。所以没有comments比错的comments要好。</p>
+</li>
+</ul>
 <p>StackOverFlow 上讲只要把数据写到txt里面就好了。后面用其他的画2333。</p>
 <p>下面摘抄<em>C++ Primer Plus</em>里关于C++文件输出的记录。总结的真精辟：</p>
 <p>“总之，使用文件输出的主要步骤如下。”</p>
@@ -345,6 +396,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/学习/" rel="tag"># 学习</a>
+          
+        </div>
+      
 
       
       
@@ -363,6 +420,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/13/图谱嵌入/" rel="prev" title="图谱嵌入">
+                图谱嵌入 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -414,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -430,7 +500,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">20</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -443,7 +513,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -482,6 +552,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
