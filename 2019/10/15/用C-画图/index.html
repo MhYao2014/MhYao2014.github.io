@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="读书笔记。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-15T07:07:40.485Z">
+<meta property="og:updated_time" content="2019-12-15T07:45:58.549Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ Primer">
 <meta name="twitter:description" content="读书笔记。">
@@ -380,7 +380,31 @@
 </ul>
 <h1 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter 2"></a>Chapter 2</h1><ul>
 <li>C++ is a statically typed language: type checking is done at compile time.</li>
-<li>a ``char’’ is the same size as a single machine byte.</li>
+<li>a ‘’char’’ is the same size as a single machine byte.</li>
+<li>bit —&gt; byte (8 bits) —&gt; word (4 or 8 bytes):  <ul>
+<li>The smallest chunk of addressable memory is referred to as a “byte.” </li>
+<li>The basic unit of storage is referred to as a “word.” </li>
+</ul>
+</li>
+<li>each <strong>byte</strong> has an “address”.</li>
+<li>Typically, floats are represented in one word (32 bits), doubles in two words (64 bits), and long doubles in either three or four words (96 or 128 bits).</li>
+<li>C++内置的几种types分为integral types (也包括char,bool)和floating-point types (剩下的)。</li>
+<li>In an unsigned type, all the bits represent the value. </li>
+<li>an 8-bit unsigned char can hold the values from 0 through 255 inclusive. </li>
+<li>an 8-bit signed char is guaranteed to be able to hold values from –127 through 127.</li>
+<li>Tips for types:<ul>
+<li>该数不可能为负则用unsigned type。</li>
+<li>要么用int，要么用long long。</li>
+<li>arithmetic expressions 中别用plain char or bool。这是因为不同的机器上plain char是否带符号不确定。</li>
+<li>尽量用double。float不够，long double耗时且浪费。</li>
+</ul>
+</li>
+<li>Type conversions happen automatically when we use an object of one type where an object of another type is expected. </li>
+<li>If we assign an out-of-range value to an object of unsigned type, the result is the remainder of the value modulo the number of values the target type can hold. <ul>
+<li>assigning –1, which is 11111111 (-2^8+2^7+…+1=-1), to an 8-bit unsigned char (therefore, 11111111 is interpreted as 2^8+2^7+..+1= 511) gives that object the value 255 (511% 256 = 255).</li>
+</ul>
+</li>
+<li>If we assign an out-of-range value to an object of signed type, the result is undefined. The program might appear to work, it might crash, or it might produce garbage values.</li>
 </ul>
 <p>StackOverFlow 上讲只要把数据写到txt里面就好了。后面用其他的画2333。</p>
 <p>下面摘抄<em>C++ Primer Plus</em>里关于C++文件输出的记录。总结的真精辟：</p>
