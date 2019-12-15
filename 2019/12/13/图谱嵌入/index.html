@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="MhYao2014, NexT">
+  <meta name="keywords" content="科研,n2v,">
 
 
 
@@ -79,14 +79,18 @@
 
 
 
+<meta name="description" content="发现我现在要看懂一篇论文就得自己把他的理论都梳理一遍才行。">
+<meta name="keywords" content="科研,n2v">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图谱嵌入">
 <meta property="og:url" content="http://yoursite.com/2019/12/13/图谱嵌入/index.html">
 <meta property="og:site_name" content="MHYao2014">
+<meta property="og:description" content="发现我现在要看懂一篇论文就得自己把他的理论都梳理一遍才行。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-13T09:15:44.110Z">
+<meta property="og:updated_time" content="2019-12-15T02:53:58.384Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="图谱嵌入">
+<meta name="twitter:description" content="发现我现在要看懂一篇论文就得自己把他的理论都梳理一遍才行。">
 
 
 
@@ -316,7 +320,11 @@
       
 
       
-        
+        <p>发现我现在要看懂一篇论文就得自己把他的理论都梳理一遍才行。</p>
+<a id="more"></a>
+<h1 id="vGraph-nips-2019"><a href="#vGraph-nips-2019" class="headerlink" title="vGraph (nips 2019)"></a>vGraph (nips 2019)</h1><p>vGraph的建模细节和精神内涵可以说和word2vec如出一辙。同时马大佬的那些观察是如此深远以至于这些东西在vGraph中依然能感受到威力。当然万事万物离不开概率图模型。</p>
+<h2 id="随机事件定义"><a href="#随机事件定义" class="headerlink" title="随机事件定义"></a>随机事件定义</h2><p>什么方法解决什么问题，我们得定义清楚vGraph是在对什么随机实验进行抽样并拟合之。从vGraph的实验出发，以它所用的Cora和Citeseer数据集为例进行说明。Cora数据集的README文档中对该数据集的描述是：数据集由.content和.cite两个文件组成。其中.content文件每行一个记录，而这条记录由3部分组成：论文ID，向量特征，论文类别。而.cite文件每行一个记录，有两部分组成：被引用文献的ID，主动引用文献的ID。文献间的引用构成了一种graph。那要在这个数据上集定义什么任务呢？</p>
+
       
     </div>
     
@@ -330,6 +338,14 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/科研/" rel="tag"># 科研</a>
+          
+            <a href="/tags/n2v/" rel="tag"># n2v</a>
+          
+        </div>
       
 
       
@@ -400,8 +416,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -429,7 +454,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">23</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -468,6 +493,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#vGraph-nips-2019"><span class="nav-number">1.</span> <span class="nav-text">vGraph (nips 2019)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#随机事件定义"><span class="nav-number">1.1.</span> <span class="nav-text">随机事件定义</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -662,6 +703,26 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
