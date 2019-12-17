@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="读书笔记。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-15T07:45:58.549Z">
+<meta property="og:updated_time" content="2019-12-15T09:43:19.209Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ Primer">
 <meta name="twitter:description" content="读书笔记。">
@@ -379,7 +379,7 @@
 </li>
 </ul>
 <h1 id="Chapter-2"><a href="#Chapter-2" class="headerlink" title="Chapter 2"></a>Chapter 2</h1><ul>
-<li>C++ is a statically typed language: type checking is done at compile time.</li>
+<li>C++ is a <strong>statically typed language</strong>: type checking is done at compile time.</li>
 <li>a ‘’char’’ is the same size as a single machine byte.</li>
 <li>bit —&gt; byte (8 bits) —&gt; word (4 or 8 bytes):  <ul>
 <li>The smallest chunk of addressable memory is referred to as a “byte.” </li>
@@ -401,19 +401,29 @@
 </li>
 <li>Type conversions happen automatically when we use an object of one type where an object of another type is expected. </li>
 <li>If we assign an out-of-range value to an object of unsigned type, the result is the remainder of the value modulo the number of values the target type can hold. <ul>
-<li>assigning –1, which is 11111111 (-2^8+2^7+…+1=-1), to an 8-bit unsigned char (therefore, 11111111 is interpreted as 2^8+2^7+..+1= 511) gives that object the value 255 (511% 256 = 255).</li>
+<li>assigning –1, which is 11111111 (-2^8+2^7+…+1=-1), to an 8-bit unsigned char (therefore, 11111111 is interpreted as 2^8+2^7+..+1= 511) gives that object the value 255 (511 % 256 = 255).</li>
 </ul>
 </li>
 <li>If we assign an out-of-range value to an object of signed type, the result is undefined. The program might appear to work, it might crash, or it might produce garbage values.</li>
-</ul>
-<p>StackOverFlow 上讲只要把数据写到txt里面就好了。后面用其他的画2333。</p>
-<p>下面摘抄<em>C++ Primer Plus</em>里关于C++文件输出的记录。总结的真精辟：</p>
-<p>“总之，使用文件输出的主要步骤如下。”</p>
-<ul>
-<li>包含头文件fstream。</li>
-<li>创建一个ofstream对象。</li>
-<li>将该ofstream对象同一个文件关联起来。</li>
-<li>就像使用cout那样使用ofsream对象。</li>
+<li>Regardless of whether one or both operands are unsigned, if we subtract a value from an unsigned, we must be sure that the result cannot be negative.</li>
+<li>Two string <strong>literals</strong> that appear adjacent to one another and that are separated only by spaces, tabs, or newlines are concatenated into a single literal.</li>
+<li>Backspace or control characters, have no visible image. Such characters are <strong>nonprintable</strong>.</li>
+<li>initialization and assignment are different operations in C++.</li>
+<li>A <strong>declaration</strong> makes a name known to the program. </li>
+<li>A <strong>definition</strong> creates the associated entity.</li>
+<li>To obtain a declaration that is not also a definition, we add the <strong>extern</strong> keyword and may not provide an explicit initializer: extern int i; </li>
+<li>Variables must be defined exactly once but can be declared many times.</li>
+<li>To use a variable in more than one file requires declarations that are separate from the variable’s definition. To use the same variable in multiple files, we must define that variable in one—and only one—file. Other files that use that variable must declare—but not define—that variable.</li>
+<li>Variable names normally are lowercase—index, not Index or INDEX.</li>
+<li>Like Sales_item, classes we define usually begin with an uppercase letter.</li>
+<li><strong>Identifiers</strong> with multiple words should visually distinguish each word, for example, student_loan or studentLoan, not studentloan.</li>
+<li>A <strong>scope</strong> is a part of the program in which a name has a particular meaning. Most scopes in C++ are delimited by curly braces.</li>
+<li><strong>Advice: Define Variables Where You First Use Them.</strong></li>
+<li>Names declared in the outer scope can also be redefined in an inner scope.</li>
+<li>A <strong>reference</strong> defines an alternative name for an object. a reference must be initialized.</li>
+<li>Once initialized, a reference remains bound to its initial object. There is no way to rebind a reference to refer to a different object.</li>
+<li>a reference may be bound only to an object, not to a literal or to the result of a more general expression.</li>
+<li>Unlike a reference, a <strong>pointer</strong> is an object in its own right and need not be initialized at the time it is defined. </li>
 </ul>
 
       
