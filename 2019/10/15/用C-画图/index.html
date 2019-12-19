@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="读书笔记。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-15T09:43:19.209Z">
+<meta property="og:updated_time" content="2019-12-19T07:24:15.681Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ Primer">
 <meta name="twitter:description" content="读书笔记。">
@@ -422,8 +422,43 @@
 <li>Names declared in the outer scope can also be redefined in an inner scope.</li>
 <li>A <strong>reference</strong> defines an alternative name for an object. a reference must be initialized.</li>
 <li>Once initialized, a reference remains bound to its initial object. There is no way to rebind a reference to refer to a different object.</li>
-<li>a reference may be bound only to an object, not to a literal or to the result of a more general expression.</li>
+<li>a reference may be bound only to an object, not to a <strong>literal</strong> or to the result of a more general expression.</li>
 <li>Unlike a reference, a <strong>pointer</strong> is an object in its own right and need not be initialized at the time it is defined. </li>
+<li>We get the address of an object by usin the <strong>address-of</strong> operator (the <strong>&amp; operator</strong>).</li>
+<li>Because references are not objects, they don’t have addresses. Hence, we may not define a pointer to a reference.</li>
+<li>When a pointer points to an object, we can use the <strong>dereference</strong> operator (the <strong>* operator</strong>) to access that object.</li>
+<li><strong>Key Concept: Some Symbols Have Multiple Meanings</strong>.</li>
+<li>In declarations, <strong>&amp;</strong> and <strong>*</strong> are used to form compound types. In expressions, these same symbols are used to denote an operator.</li>
+<li>It is illegal to assign an int variable to a pointer, even if the variable’s value happens to be 0.</li>
+<li>A <strong>null pointer</strong> does not point to any object. The type <strong>void*</strong> is a special pointer type that can hold the address of any object. </li>
+<li>It can be easier to understand complicated pointer or reference declarations if you read them from right to left.</li>
+<li>Because we can’t change the value of a <strong>const</strong> object after we create it, it must be initialized. </li>
+<li>To share a const object among multiple files, you must define the variable as extern.</li>
+<li>C++ programmers tend to abbreviate the phrase “reference to const” as “const reference.”</li>
+<li>A <strong>temporary</strong> object is an unnamed object created by the compiler when it needs a place to store a result from evaluating an expression.</li>
+<li>A <strong>Reference to const</strong> May Refer to an Object That Is Not const.</li>
+<li>A <strong>pointer to const</strong> may not be used to change the object to which the pointer points.</li>
+<li>It may be helpful to think of pointers and references to const as pointers or references “that think they point or refer to const.”</li>
+<li>A <strong>const pointer</strong> must be initialized, and once initialized, its value (i.e., the address that it holds) may not be changed.</li>
+<li>We use the term <strong>top-level const</strong> to indicate that the pointer itself is a const. When a pointer can point to a const object, we refer to that const as a <strong>low-level const</strong>.</li>
+<li>A <strong>constant expression</strong> is an expression whose value cannot change and that can be evaluated at compile time. </li>
+<li>Under the new standard, we can ask the compiler to verify that a variable is a <strong>constant expression</strong> by declaring the variable in a constexpr declaration. Variables declared as <strong>constexpr</strong> are implicitly <strong>const</strong> and must be initialized by constant expressions.</li>
+<li><strong>constexpr</strong> imposes a <strong>top-level const</strong> on the objects it defines.</li>
+<li>Let the compiler figure out the type for us by using the <strong>auto</strong> type specifier.</li>
+<li>By implication, a variable that uses <strong>auto</strong> as its type specifier must have an initializer.</li>
+<li>In C++ we define our own data types by defining a class. </li>
+<li>Headers (usually) contain entities (such as class definitions and const and constexpr variables that can be defined only once in any given file. </li>
+<li><strong>#ifdef</strong> is true if the variable has been defined, and #ifndef is true if the variable has not been defined. If the test is true, then everything following the #ifdef or #ifndef is processed up to the matching <strong>#endif</strong>.</li>
+<li>Preprocessor variable names do not respect C++ scoping rules.</li>
+</ul>
+<h1 id="Chapter-3"><a href="#Chapter-3" class="headerlink" title="Chapter 3"></a>Chapter 3</h1><ul>
+<li>Headers Should Not Include using Declarations.<ul>
+<li>The reason is that the contents of a header are copied into the including program’s text. If a header has a using declaration, then every program that includes that header gets that same using declaration. As a result, a program that didn’t intend to use the specified library name might encounter unexpected name conflicts.</li>
+</ul>
+</li>
+<li>The string input operator reads and discards any leading whitespace (e.g., spaces, newlines, tabs). It then reads characters until the next whitespace character is encountered. </li>
+<li>The newline that causes <strong>getline</strong> to return is discarded; the newline is not stored in the string.</li>
+<li>Although we don’t know the precise type of string::size_type, we do know that it is an unsigned type big enough to hold the size of any string. </li>
 </ul>
 
       
@@ -606,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-1"><span class="nav-number">1.</span> <span class="nav-text">Chapter 1</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-2"><span class="nav-number">2.</span> <span class="nav-text">Chapter 2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-3"><span class="nav-number">3.</span> <span class="nav-text">Chapter 3</span></a></li></ol></div>
             
 
           </div>
