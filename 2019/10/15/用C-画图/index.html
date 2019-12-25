@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="MHYao2014">
 <meta property="og:description" content="读书笔记。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-12-19T07:24:15.681Z">
+<meta property="og:updated_time" content="2019-12-23T14:47:29.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++ Primer">
 <meta name="twitter:description" content="读书笔记。">
@@ -459,6 +459,12 @@
 <li>The string input operator reads and discards any leading whitespace (e.g., spaces, newlines, tabs). It then reads characters until the next whitespace character is encountered. </li>
 <li>The newline that causes <strong>getline</strong> to return is discarded; the newline is not stored in the string.</li>
 <li>Although we don’t know the precise type of string::size_type, we do know that it is an unsigned type big enough to hold the size of any string. </li>
+<li>Adding two strings yields a new string that is the concatenation of the left-hand<br>followed by the right-hand operand.</li>
+<li>When we mix strings and string or character literals, at least one operand to each + operator must be of string type.</li>
+<li>For historical reasons, and for compatibility with C, string literals are not<br>standard library strings. It is important to remember that these types differ<br>when you use string literals and library strings.</li>
+<li>The subscript operator (the [ ] operator) takes a string::size_type value that denotes the position of the character we want to access. </li>
+<li>The values we use to subscript a string must be &gt;= 0 and &lt; size(). The result of using an index outside this range is undefined. By implication, subscripting an empty string is undefined. Any time we use a subscript, we must ensure that there is a value at the given location.</li>
+<li>A vector is a collection of objects, all of which have the same type. Every object in the<br>collection has an associated index, which gives access to that object.</li>
 </ul>
 
       
